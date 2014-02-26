@@ -16,3 +16,8 @@ Using the change of base formula, you can change the base of any log to another.
 
 __A sender sends `N` packets, where each packet has a unique ID from `1 to N`. The receiver receives all but 1 packet. How does the receiver know which packet is missing?__  
 &Sigma;<sub>sender</sub> (1 to N) - &Sigma;<sub>receiver</sub> (1 to N)
+
+>! Spoiler
+
+
+> ! Spoiler
