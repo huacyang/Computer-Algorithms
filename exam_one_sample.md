@@ -30,17 +30,17 @@ __In an RSA cryptosystem, `p = 7` and `q = 11`. Find appropriate exponents `d` a
 > &nbsp;&nbsp;_d = 7<sup>-1</sup>_ mod _60_  
 > &nbsp;&nbsp;_7 &times; d = 1_ mod _60_  
 > Find the __gcd(7, 60) = 1__  
->	_60 = 8 &times; 7 + 4_  
->	_7 = 1 &times; 4 + 3_  
->	_4 = 1 &times; 3 + 1_  
->	_3 = 3 &times; 1 + 0_  
+> &ensp;_60 = 8 &times; 7 + 4_  
+> &ensp;&ensp;_7 = 1 &times; 4 + 3_  
+> &ensp;&ensp;&ensp;_4 = 1 &times; 3 + 1_  
+> &ensp;_3 = 3 &times; 1 + 0_  
 > Find the __linear combination__  
->	_1 = 4 - 1 &times; 3_  
->	_1 = 4 - (7 - 1 &times; 4)_  
->	_1 = 4 - 7 + 4_  
->	_1 = -7 + 2(60 - 8 &times; 7)_  
->	_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
->	_1 = (2 &times; 60) + (-17 &times; 7)_  
+> &emsp;_1 = 4 - 1 &times; 3_  
+> &emsp;&emsp;_1 = 4 - (7 - 1 &times; 4)_  
+> &emsp;&emsp;&emsp;_1 = 4 - 7 + 4_  
+> &emsp;_1 = -7 + 2(60 - 8 &times; 7)_  
+> &emsp;_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
+> &emsp;_1 = (2 &times; 60) + (-17 &times; 7)_  
 > Use __1 = ax + by__  
 >	__b = d = -17__  
 > Substitute __d__  
