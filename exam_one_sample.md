@@ -11,39 +11,39 @@ __If algorithm A run time is a `logarithmic function` of its input and algorithm
 
 __Prove the following: n<sup>3</sup> = O(4<sup>log(n)</sup>)__
 > __Reduce O(4<sup>log(n)</sup>)__  
-> 4<sup>log(n)</sup> = n<sup>log<sub>2</sub>(4)</sup> = n<sup>2</sup>  
+> &emsp;&emsp;4<sup>log(n)</sup> = n<sup>log<sub>2</sub>(4)</sup> = n<sup>2</sup>  
 > __Find constant _c_ such that n<sup>3</sup> = &Omega;(4<sup>log(n)</sup>)__  
-> n<sup>3</sup> &gt; _c_ &times; n<sup>2</sup> with _c_ = 1  
-> n<sup>3</sup> &le; _c_ &times; n<sup>2</sup> with _c_ &ge; n  
-> Thus, n<sup>3</sup> = &Omega;(4<sup>log(n)</sup>) with constant _c_ = n
+> &emsp;&emsp;n<sup>3</sup> &gt; _c_ &times; n<sup>2</sup> with _c_ = 1  
+> &emsp;&emsp;n<sup>3</sup> &le; _c_ &times; n<sup>2</sup> with _c_ &ge; n  
+> &emsp;&emsp;Thus, n<sup>3</sup> = &Omega;(4<sup>log(n)</sup>) with constant _c_ = n
 
 __What is the security of the `RSA protocol` based on?__
 > Based on the __factoring problem__, because of the difficulty of factoring the product of two large prime numbers.
 
 __In an RSA cryptosystem, `p = 7` and `q = 11`. Find appropriate exponents `d` and `e`.__  
-> Find the __gcd(e, (7 - 1)(11 - 1)) = 1__  
+> __Find the _gcd(e, (7 - 1)(11 - 1)) = 1___  
 > &emsp;&emsp;_gcd(e, (7 - 1)(11 - 1)) = 1_  
 > &emsp;&emsp;_gcd(e, 60) = 1_  
 > &emsp;&emsp;__e = 7__  
-> Solve for __d__  
+> __Solve for d__  
 > &emsp;&emsp;_d = e<sup>-1</sup>_ mod _(p - 1)(q - 1)_  
 > &emsp;&emsp;_d = 7<sup>-1</sup>_ mod _60_  
 > &emsp;&emsp;_7 &times; d = 1_ mod _60_  
-> Find the __gcd(7, 60) = 1__  
+> __Find the gcd(7, 60) = 1__  
 > &emsp;&emsp;_60 = 8 &times; 7 + 4_  
 > &emsp;&emsp;_7 = 1 &times; 4 + 3_  
 > &emsp;&emsp;_4 = 1 &times; 3 + 1_  
 > &emsp;&emsp;_3 = 3 &times; 1 + 0_  
-> Find the __linear combination__  
+> __Find the linear combination__  
 > &emsp;&emsp;_1 = 4 - 1 &times; 3_  
 > &emsp;&emsp;_1 = 4 - (7 - 1 &times; 4)_  
 > &emsp;&emsp;_1 = 4 - 7 + 4_  
 > &emsp;&emsp;_1 = -7 + 2(60 - 8 &times; 7)_  
 > &emsp;&emsp;_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
 > &emsp;&emsp;_1 = (2 &times; 60) + (-17 &times; 7)_  
-> Use __1 = ax + by__  
+> __Use 1 = ax + by__  
 > &emsp;&emsp;__b = d = -17__  
-> Substitute __d__  
+> __Substitute d__  
 > &emsp;&emsp;_d = x_ mod _60_  
 > &emsp;&emsp;_-17 = x_ mod _60_  
 > &emsp;&emsp;_x = 43_ mod _60_  
