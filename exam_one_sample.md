@@ -20,39 +20,34 @@ __Prove the following: n<sup>3</sup> = O(4<sup>log(n)</sup>)__
 __What is the security of the `RSA protocol` based on?__
 > Based on the __factoring problem__, because of the difficulty of factoring the product of two large prime numbers.
 
-__A sender sends `N` packets, where each packet has a unique ID from `1 to N`. The receiver receives all but 1 packet. How does the receiver know which packet is missing?__  
-> &Sigma;<sub>sender</sub> (1 to N) - &Sigma;<sub>receiver</sub> (1 to N)
-
 __In an RSA cryptosystem, `p = 7` and `q = 11`. Find appropriate exponents `d` and `e`.__  
-><dl>
->	<dt>Find the __gcd(e, (7 &minus; 1)(11 &minus; 1)) = 1__</dt>
->		<dd>_gcd(e, (7 &minus; 1)(11 &minus; 1)) = 1_</dd>
->		<dd>_gcd(e, 60) = 1_</dd>
->		<dd>__e = 7__</dd>
->	<dt>Solve for __d__</dt>
->		<dd>_d = e<sup>-1</sup>_ mod _(p &minus; 1)(q &minus; 1)_</dd>
->		<dd>_d = 7<sup>-1</sup>_ mod _60_</dd>
->		<dd>_7 &times; d = 1_ mod _60_</dd>
->	<dt>Find the __gcd(7, 60) = 1__</dt>
->		<dd>_60 = 8 &times; 7 &plus; 4_</dd>
->		<dd>_7 = 1 &times; 4 &plus; 3_</dd>
->		<dd>_4 = 1 &times; 3 &plus; 1_</dd>
->		<dd>_3 = 3 &times; 1 &plus; 0_</dd>
->	<dt>Find the __linear combination__</dt>
->		<dd>_1 = 4 &minus; 1 &times; 3_</dd>
->		<dd>_1 = 4 &minus; (7 &minus; 1 &times; 4)_</dd>
->		<dd>_1 = 4 &minus; 7 &plus; 4_</dd>
->		<dd>_1 = &minus;7 &plus; 2(60 &minus; 8 &times; 7)_</dd>
->		<dd>_1 = &minus;7 &plus; (2 &times; 60) &minus; (16 &times; 7)_</dd>
->		<dd>_1 = (2 &times; 60) &plus; (&minus;17 &times; 7)_</dd>
->	<dt>Use __1 = ax &plus; by__</dt>
->		<dd>__b = d = -17__</dd>
->	<dt>Substitute __d__</dt>
->		<dd>_d = x_ mod _60_</dd>
->		<dd>_-17 = x_ mod _60_</dd>
->		<dd>_x = 43_ mod _60_</dd>
->		<dd>__d = 43 mod 60__</dd>
-></dl>
+> Find the __gcd(e, (7 &minus; 1)(11 &minus; 1)) = 1__
+>	_gcd(e, (7 &minus; 1)(11 &minus; 1)) = 1_
+>	_gcd(e, 60) = 1_
+>	__e = 7__
+> Solve for __d__
+>	_d = e<sup>-1</sup>_ mod _(p &minus; 1)(q &minus; 1)_
+>	_d = 7<sup>-1</sup>_ mod _60_
+>	_7 &times; d = 1_ mod _60_
+> Find the __gcd(7, 60) = 1__
+>	_60 = 8 &times; 7 &plus; 4_
+>	_7 = 1 &times; 4 &plus; 3_
+>	_4 = 1 &times; 3 &plus; 1_
+>	_3 = 3 &times; 1 &plus; 0_
+> Find the __linear combination__
+>	_1 = 4 &minus; 1 &times; 3_
+>	_1 = 4 &minus; (7 &minus; 1 &times; 4)_
+>	_1 = 4 &minus; 7 &plus; 4_
+>	_1 = &minus;7 &plus; 2(60 &minus; 8 &times; 7)_
+>	_1 = &minus;7 &plus; (2 &times; 60) &minus; (16 &times; 7)_
+>	_1 = (2 &times; 60) &plus; (&minus;17 &times; 7)_
+> Use __1 = ax &plus; by__
+>	__b = d = -17__
+> Substitute __d__
+>	_d = x_ mod _60_
+>	_-17 = x_ mod _60_
+>	_x = 43_ mod _60_
+>	__d = 43 mod 60__
 
 
 
