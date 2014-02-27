@@ -38,8 +38,9 @@ __In an RSA cryptosystem, `p = 7` and `q = 11`. Find appropriate exponents `d` a
 > &emsp;_1 = 4 - 1 &times; 3_  
 > &emsp;&emsp;_1 = 4 - (7 - 1 &times; 4)_  
 > &emsp;&emsp;&emsp;_1 = 4 - 7 + 4_  
-> &emsp;_1 = -7 + 2(60 - 8 &times; 7)_  
-> &emsp;_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
+> ___
+> &nbsp;_1 = -7 + 2(60 - 8 &times; 7)_  
+> &ensp;_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
 > &emsp;_1 = (2 &times; 60) + (-17 &times; 7)_  
 > Use __1 = ax + by__  
 >	__b = d = -17__  
