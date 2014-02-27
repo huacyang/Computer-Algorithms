@@ -22,33 +22,32 @@ __What is the security of the `RSA protocol` based on?__
 
 __In an RSA cryptosystem, `p = 7` and `q = 11`. Find appropriate exponents `d` and `e`.__  
 > Find the __gcd(e, (7 - 1)(11 - 1)) = 1__  
-> &nbsp;&nbsp;_gcd(e, (7 - 1)(11 - 1)) = 1_  
-> &nbsp;&nbsp;_gcd(e, 60) = 1_  
-> &nbsp;&nbsp;__e = 7__  
+> &emsp;&emsp;_gcd(e, (7 - 1)(11 - 1)) = 1_  
+> &emsp;&emsp;_gcd(e, 60) = 1_  
+> &emsp;&emsp;__e = 7__  
 > Solve for __d__  
-> &nbsp;&nbsp;_d = e<sup>-1</sup>_ mod _(p - 1)(q - 1)_  
-> &nbsp;&nbsp;_d = 7<sup>-1</sup>_ mod _60_  
-> &nbsp;&nbsp;_7 &times; d = 1_ mod _60_  
+> &emsp;&emsp;_d = e<sup>-1</sup>_ mod _(p - 1)(q - 1)_  
+> &emsp;&emsp;_d = 7<sup>-1</sup>_ mod _60_  
+> &emsp;&emsp;_7 &times; d = 1_ mod _60_  
 > Find the __gcd(7, 60) = 1__  
-> &ensp;_60 = 8 &times; 7 + 4_  
-> &ensp;&ensp;_7 = 1 &times; 4 + 3_  
-> &ensp;&ensp;&ensp;_4 = 1 &times; 3 + 1_  
-> &ensp;_3 = 3 &times; 1 + 0_  
+> &emsp;&emsp;_60 = 8 &times; 7 + 4_  
+> &emsp;&emsp;_7 = 1 &times; 4 + 3_  
+> &emsp;&emsp;_4 = 1 &times; 3 + 1_  
+> &emsp;&emsp;_3 = 3 &times; 1 + 0_  
 > Find the __linear combination__  
-> &emsp;_1 = 4 - 1 &times; 3_  
+> &emsp;&emsp;_1 = 4 - 1 &times; 3_  
 > &emsp;&emsp;_1 = 4 - (7 - 1 &times; 4)_  
-> &emsp;&emsp;&emsp;_1 = 4 - 7 + 4_  
-> ___
-> &nbsp;_1 = -7 + 2(60 - 8 &times; 7)_  
-> &ensp;_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
-> &emsp;_1 = (2 &times; 60) + (-17 &times; 7)_  
+> &emsp;&emsp;_1 = 4 - 7 + 4_  
+> &emsp;&emsp;_1 = -7 + 2(60 - 8 &times; 7)_  
+> &emsp;&emsp;_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
+> &emsp;&emsp;_1 = (2 &times; 60) + (-17 &times; 7)_  
 > Use __1 = ax + by__  
->	__b = d = -17__  
+> &emsp;&emsp;__b = d = -17__  
 > Substitute __d__  
->	_d = x_ mod _60_  
->	_-17 = x_ mod _60_  
->	_x = 43_ mod _60_  
->	__d = 43 mod 60__  
+> &emsp;&emsp;_d = x_ mod _60_  
+> &emsp;&emsp;_-17 = x_ mod _60_  
+> &emsp;&emsp;_x = 43_ mod _60_  
+> &emsp;&emsp;__d = 43 mod 60__  
 
 
 
