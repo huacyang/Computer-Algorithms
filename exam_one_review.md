@@ -11,16 +11,18 @@ __You may be provided running times of different algorithms and asked to show wh
 > See [Asymptotic Notation](laws.md#asymptotic-notation) 
 
 __Provide the definition of `Big-O`, `Omega`, and `Theta`.__  
-> * __O-notation__ is the `asymptotic upper bound`  
-> * __&Omega;-notation__ is the `asymptotic lower bound`  
-> * __&Theta;-notation__ asymptotically bounds a function from `above and below`  
-> * _f(n) = O(g(n))_ __imply__ f(n) > g(n)  
-> * _f(n) = &Omega;(g(n))_ __imply__ f(n) < g(n)  
-> * _f(n) = &Theta;(g(n))_ __imply__ f(n) = g(n)  
+> <dl>
+> <dt>__O-notation__ is the `asymptotic upper bound`</dt>  
+> <dd>_f(n) = O(g(n))_ __imply__ f(n) > g(n)</dd>   
+> <dl>
+> __&Omega;-notation__ is the `asymptotic lower bound`  
+> _f(n) = &Omega;(g(n))_ __imply__ f(n) < g(n)  
+> __&Theta;-notation__ asymptotically bounds a function from `above and below`   
+> _f(n) = &Theta;(g(n))_ __imply__ f(n) = g(n)  
 
 > See [Asymptotic Notation](laws.md#asymptotic-notation) 
 
-__You may be provided certain statements about asymptotic analysis of running times and asked to show if they are correct or not. For instance: “n<sup>a</sup> dominates n<sub>b</sub> if a > b”.__ 
+__You may be provided certain statements about asymptotic analysis of running times and asked to show if they are correct or not. For instance: “n<sup>a</sup> dominates n<sup>b</sup> if a > b”.__ 
 > See [Asymptotic Notation](laws.md#asymptotic-notation) 
 
 __What is the “primality” problem and what is the “factoring” problem? Which one of the two is tractable? What are the advantages of the intractability of the other problem?__  
@@ -31,5 +33,5 @@ __What is the “primality” problem and what is the “factoring” problem? W
 > See [Primality](laws.md#primality) 
 
 __How many digits do you need to represent a number `N` in base `b`__  
-> [log<sub>b</sub>N] + 1
+> &lfloor;log<sub>b</sub>N&rfloor; + 1
 
