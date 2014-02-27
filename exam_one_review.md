@@ -1,4 +1,4 @@
-## Practice Problems
+## Exam 1 Review
 
 __Give a justiﬁcation why improvements in hardware are typically not sufﬁcient to make an algorithm with exponential running time reasonably tractable.__  
 > The algorithm will be so slow that even massive improvements in hardware won't have a useful impact.  
@@ -11,7 +11,10 @@ __You may be provided running times of different algorithms and asked to show wh
 > See [Asymptotic Notation](laws.md#asymptotic-notation) 
 
 __Provide the definition of `Big-O`, `Omega`, and `Theta`.__  
-> 
+> __O-notation__ is the `asymptotic upper bound`  
+> __&Omega;-notation__ is the `asymptotic lower bound`  
+> __&Theta;-notation__ is the `asymptotic `   
+> See [Asymptotic Notation](laws.md#asymptotic-notation) 
 
 __You may be provided certain statements about asymptotic analysis of running times and asked to show if they are correct or not. For instance: “n<sup>a</sup> dominates n<sub>b</sub> if a > b”.__  
 > 

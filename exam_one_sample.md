@@ -1,3 +1,5 @@
+## Exam 1 Sampling Problems
+
 __How many digits do you need to represent a number `N` in base `b`__  
 > [log<sub>b</sub>N] + 1
 
