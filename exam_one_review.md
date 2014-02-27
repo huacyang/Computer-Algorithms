@@ -25,7 +25,10 @@ __We have 3 algorithms for the same problem where the ﬁrst runs in `exponentia
 > Exponential time &gt; logarithmic time &gt; linear time
 
 __You may be provided running times of different algorithms and asked to show which running time dominates asymptotically__  
-> See [Asymptotic Notation](## Asymptotic Notation)
+> See [Asymptotic Notation](## Asymptotic_Notation)  
+> See [Asymptotic Notation](##Asymptotic_Notation)  
+> See [Asymptotic Notation](## AsymptoticNotation)  
+> See [Asymptotic Notation](##Asymptotic Notation) 
 
 __Provide the definition of `Big-O`, `Omega`, and `Theta`.__  
 > 
