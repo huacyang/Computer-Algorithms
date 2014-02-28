@@ -1,47 +1,55 @@
 ## Arithmetic
 
-__Addition__  
-Given two binary numbers _x_ and _y_, where _x_ and _y_ are each _n_ bits long, the sum of _x_ and _y_ is __n &plus; 1__  
-`Run-time`  
-&emsp;&emsp;The total running time for the addition algorithm is therefore of the form _c<sub>0</sub> &plus; c<sub>1</sub>n_, where _c<sub>0</sub>_ and _c<sub>1</sub>_ are some constants.  
-&emsp;&emsp;In other other words, the run-time is `linear`, denoted as __O(n)__. 
- 
-__Multiplication__  
-If _x_ and _y_ are both _n_ bits, then there are _n_ intermediate rows, with lengths of up to _2n_ bits (taking the shifting into account).  
-&emsp;&emsp;Bit-wise multiplication uses the `left-shift` technique.  
-`Run-time`  
-&emsp;&emsp;The total time taken to add up these rows, doing two numbers at a time, is  
-&emsp;&emsp;&emsp;&emsp;_O(n) &plus; O(n) &plus; ... &plus; O(n) = n &minus; 1_ times.  
-&emsp;&emsp;The run-time is `quadratic` in the size of the inputs, denoted as __O(n<sup>2</sup>)__.  
- 
-__Division__  
-To divide an integer _x_ by another integer _y &#8800; 0_ means to find a quotient _q_ and a remainder _r_, where _x = yq &plus; r_ and _r &lt; y_.  
-&emsp;&emsp;Bit-wise division uses the `right-shift` technique.  
-`Run-time`  
-&emsp;&emsp;Like multiplication, the run-time is `quadratic`. 
+__Addition__
 
-__Recursion__  
-`Rule` _x &times; y:_  
-&emsp;&emsp;_&rarr; 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is even  
-&emsp;&emsp;_&rarr; x &plus; 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is odd  
+* Given two binary numbers _x_ and _y_, where _x_ and _y_ are each _n_ bits long, the sum of _x_ and _y_ is __n &plus; 1__
+* `Run-time`
+	* The total running time for the addition algorithm is therefore of the form _c<sub>0</sub> &plus; c<sub>1</sub>n_, where _c<sub>0</sub>_ and _c<sub>1</sub>_ are some constants.
+	* In other other words, the run-time is `linear`, denoted as __O(n)__. 
+ 
+__Multiplication__
 
-_function multiply (x, y)_  
-`Input` two _n_-bit integers _x_ and _y_, where _y &ge; 0_  
-`Output` their product  
-&emsp;&emsp;if _y = 0:_ return _0_  
-&emsp;&emsp;_z =_ multiply(_x, &lfloor;y/2&rfloor;_)  
-&emsp;&emsp;if _y_ is even:  
-&emsp;&emsp;&emsp;&emsp;return _2z_  
-&emsp;&emsp;else:  
-&emsp;&emsp;&emsp;&emsp;return _x &plus; 2z_  
-`Run-time`  
-&emsp;&emsp;The program terminates after _n_ recursive calls, because at each call _y_ is halved&mdash;that is, its number of bits is decreased by one.  
-&emsp;&emsp;Each recursive call requires the following operations:  
-&emsp;&emsp;&emsp;&emsp;&spades; a division by 2 (right shift)  
-&emsp;&emsp;&emsp;&emsp;&spades; a test for odd/even (looking up the last bit)  
-&emsp;&emsp;&emsp;&emsp;&spades; a multiplication by 2 (left shift)  
-&emsp;&emsp;&emsp;&emsp;&spades; possibly one addition  
-&emsp;&emsp;Thus the run-time is __O(n<sup>2</sup>)__  
+* If _x_ and _y_ are both _n_ bits, then there are _n_ intermediate rows, with lengths of up to _2n_ bits (taking the shifting into account).
+	* Bit-wise multiplication uses the `left-shift` technique.
+* `Run-time`
+	* The total time taken to add up these rows, doing two numbers at a time, is
+		* _O(n) &plus; O(n) &plus; ... &plus; O(n) = n &minus; 1_ times.
+	* The run-time is `quadratic` in the size of the inputs, denoted as __O(n<sup>2</sup>)__.
+ 
+__Division__
+
+* To divide an integer _x_ by another integer _y &#8800; 0_ means to find a quotient _q_ and a remainder _r_, where _x = yq &plus; r_ and _r &lt; y_.
+	* Bit-wise division uses the `right-shift` technique.
+* `Run-time`
+	* Like multiplication, the run-time is `quadratic`. 
+
+__Recursion__
+
+* `Rule` _x &times; y:_
+	* _2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is even
+	* _x &plus; 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is odd
+
+~~~
+Input: two n-bit integers x and y, where y >= 0
+Output: their product
+
+function multiply(x, y)
+	if y = 0: return 0
+	z = multiply(x, floor(y/2))
+	if y is even:
+		return 2z
+	else:
+		return x + 2z
+~~~
+
+* `Run-time`
+	* The program terminates after _n_ recursive calls, because at each call _y_ is halved&mdash;that is, its number of bits is decreased by one.
+	* Each recursive call requires the following operations:
+		* a division by 2 (right shift)
+		* a test for odd/even (looking up the last bit)
+		* a multiplication by 2 (left shift)
+		* possibly one addition
+	* Thus the run-time is __O(n<sup>2</sup>)__
 
 ## Cryptography
 
@@ -75,17 +83,16 @@ __&Theta;-notation__
 
 * _f(n) = &Theta;(g(n))_ __and__ _g(n) = &Theta;(h(n))_ __imply__ _f(n) = &Theta;(h(n))_
 * _f(n) = &Theta;(g(n))_ __is like__ _a = b_
- 
-	 `Proof` _f(n) = &Theta;(g(n))_  
-		 there exist positive constants _c<sub>1</sub>_, _c<sub>2</sub>_, and _n<sub>0</sub>_, 
-		 such that _0 &le; c<sub>1</sub>g(n) &le; f(n) &le; c<sub>2</sub>g(n)_ for all _n &ge; n<sub>0</sub>_ 
+* `Proof` : _f(n) = &Theta;(g(n))_
+	* there exist positive constants _c<sub>1</sub>_, _c<sub>2</sub>_, and _n<sub>0</sub>_, 
+	* such that _0 &le; c<sub>1</sub>g(n) &le; f(n) &le; c<sub>2</sub>g(n)_ for all _n &ge; n<sub>0</sub>_ 
  
 
 __O-notation__
 
 * _f(n) = O(g(n))_ __and__ _g(n) = O(h(n))_ __imply__ _f(n) = O(h(n))_
 * _f(n) = O(g(n))_ __is like__ _a &le; b_
-* `Proof` _f(n) = O(g(n))_  
+* `Proof` : _f(n) = O(g(n))_
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
 	* such that _0 &le; f(n) &le; cg(n)_ for all _n &ge; n<sub>0</sub>_ 
  
@@ -94,7 +101,7 @@ __&Omega;-notation__
 
 * _f(n) = &Omega;(g(n))_ __and__ _g(n) = &Omega;(h(n))_ __imply__ _f(n) = &Omega;(h(n))_
 * _f(n) = &Omega;(g(n))_ __is like__ _a &ge; b_
-* `Proof` _f(n) = &Omega;(g(n))_  
+* `Proof` : _f(n) = &Omega;(g(n))_
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
 	* such that _0 &le; cg(n) &le; f(n)_ for all _n &ge; n<sub>0</sub>_ 
  
@@ -119,18 +126,19 @@ __Integer Factorization Problem__ (_IFP_): Given a positive integer _n &gt; 1_, 
 
 ## Modular Arithmetic
 
-__Modular Arithmetic__ : a system for dealing with restricted ranges of integers. We define _x modulo N_ to be the remainder when _x_ is divided by _N_; that is, if _x = qN + r_ with _0 &le; r &le; N_, then _x_ modulo _N_ is equal to _r_.  
-&emsp;&emsp;_x &equiv; y_ (mod _N_) <= => _N_ divides (_x - y_) 
+__Modular Arithmetic__ : a system for dealing with restricted ranges of integers.
 
+* We define _x modulo N_ to be the remainder when _x_ is divided by _N_; that is, if _x = qN + r_ with _0 &le; r &le; N_, then _x_ modulo _N_ is equal to _r_:
+	* _x &equiv; y_ (mod _N_) <= => _N_ divides (_x - y_) 
 * `Substitution Rule` 
 	* If _x &equiv; x&prime;_ (mod _N_) and _y &equiv; y&prime;_ (mod _N_),
 	* then _x &plus; y &equiv; x&prime; + y&prime;_ (mod _N_) and _xy &equiv; x&prime;y&prime;_ (mod _N_) 
  
 
-__Modular Addition__  
-The complexity of `modular addition` is __O(n)__ (linear),  
-&emsp;&emsp;where _n = &lceil;log N&rceil;_ is the size of _N_ 
- 
+__Modular Addition__
+
+* The complexity of `modular addition` is __O(n)__ (linear), where _n = &lceil;log N&rceil;_ is the size of _N_
+
 ~~~
   (30 + 26 + 8 + 29 + 28 + 5) mod 31
 = (((((30 + 26) mod 31 + 8) mod 31 + 29) mod 31 + 28) mod 31 + 5) mod 31
@@ -141,9 +149,10 @@ The complexity of `modular addition` is __O(n)__ (linear),
 = 2
 ~~~
 
-__Modular Multiplication__  
-The complexity of `modular multiplication` is __O(n<sup>2</sup>)__ (quadratic),  
-&emsp;&emsp;to compute _x &times; y mod N_, multiply (quadratic) then divide (quadratic) to get the remainder. 
+__Modular Multiplication__
+
+* The complexity of `modular multiplication` is __O(n<sup>2</sup>)__ (quadratic)
+* To compute _x &times; y mod N_, multiply (quadratic) then divide (quadratic) to get the remainder. 
  
 ~~~
   (30 x 26 x 8 x 29 x 28 x 5) mod 31
@@ -162,7 +171,11 @@ __Primality Testing Problem__ (_PTP_): Given a positive integer greater than 1, 
 *	This problem can be solved by the _AKS_ algorithm deterministically and unconditionally in _O(log(n))_.
 *	_PTP_ is `tractable`
 
-__Fermat's Little Theorem__  
+__Fermat's Little Theorem__
+
+* If _p_ is prime, then for every _1 &le; a &lt; p_,
+	* _a<sup>p-1</sup> &equiv; 1_ (mod _p_)
+* `Proof`
 
 
 
