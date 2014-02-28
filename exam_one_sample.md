@@ -42,6 +42,7 @@ __In an RSA cryptosystem, `p = 7` and `q = 11`. Find appropriate exponents `d` a
 > &emsp;&emsp;_1 = -7 + (2 &times; 60) - (16 &times; 7)_  
 > &emsp;&emsp;_1 = (2 &times; 60) + (-17 &times; 7)_  
 > __Use 1 = ax + by__  
+> &emsp;&emsp;_1 = (2)(60) + (-17)(7)_  
 > &emsp;&emsp;__b = d = -17__  
 > __Substitute d__  
 > &emsp;&emsp;_d = x_ mod _60_  

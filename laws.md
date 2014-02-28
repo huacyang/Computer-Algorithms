@@ -3,12 +3,13 @@
 __Addition__  
 Given two binary numbers _x_ and _y_, where _x_ and _y_ are each _n_ bits long, the sum of _x_ and _y_ is __n &plus; 1__  
 `Run-time`  
-&emsp;&emsp;The total running time for the addition algorithm is therefore of the form _c<sub>0</sub> &plus; c<sub>1</sub>n_, where _c<sub>0</sub>_ and _c<sub>1</sub>_ are some constants. In other other words, the run-time is `linear`, denoted as __O(n)__. 
+&emsp;&emsp;The total running time for the addition algorithm is therefore of the form _c<sub>0</sub> &plus; c<sub>1</sub>n_, where _c<sub>0</sub>_ and _c<sub>1</sub>_ are some constants.  
+&emsp;&emsp;In other other words, the run-time is `linear`, denoted as __O(n)__. 
  
 __Multiplication__  
 If _x_ and _y_ are both _n_ bits, then there are _n_ intermediate rows, with lengths of up to _2n_ bits (taking the shifting into account).  
-&emsp;&emsp;Bit-wise multiplication uses the `left-shift` technique. 
-`Run-time` 
+&emsp;&emsp;Bit-wise multiplication uses the `left-shift` technique.  
+`Run-time`  
 &emsp;&emsp;The total time taken to add up these rows, doing two numbers at a time, is  
 &emsp;&emsp;&emsp;&emsp;_O(n) &plus; O(n) &plus; ... &plus; O(n) = n &minus; 1_ times.  
 &emsp;&emsp;The run-time is `quadratic` in the size of the inputs, denoted as __O(n<sup>2</sup>)__.  
@@ -21,8 +22,8 @@ To divide an integer _x_ by another integer _y &#8800; 0_ means to find a quotie
 
 __Recursion__  
 `Rule` _x &times; y:_  
-&emsp;&emsp;_= 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is even  
-&emsp;&emsp;_= x &plus; 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is odd  
+&emsp;&emsp;_&rarr; 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is even  
+&emsp;&emsp;_&rarr; x &plus; 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is odd  
 
 _function multiply (x, y)_  
 `Input` two _n_-bit integers _x_ and _y_, where _y &ge; 0_  
@@ -75,7 +76,7 @@ __&Theta;-notation__
 * _f(n) = &Theta;(g(n))_ __and__ _g(n) = &Theta;(h(n))_ __imply__ _f(n) = &Theta;(h(n))_
 * _f(n) = &Theta;(g(n))_ __is like__ _a = b_
  
-	 `Proof` _f(n) = &Theta;(g(n))_ 
+	 `Proof` _f(n) = &Theta;(g(n))_  
 		 there exist positive constants _c<sub>1</sub>_, _c<sub>2</sub>_, and _n<sub>0</sub>_, 
 		 such that _0 &le; c<sub>1</sub>g(n) &le; f(n) &le; c<sub>2</sub>g(n)_ for all _n &ge; n<sub>0</sub>_ 
  
@@ -84,7 +85,7 @@ __O-notation__
 
 * _f(n) = O(g(n))_ __and__ _g(n) = O(h(n))_ __imply__ _f(n) = O(h(n))_
 * _f(n) = O(g(n))_ __is like__ _a &le; b_
-* `Proof` _f(n) = O(g(n))_ 
+* `Proof` _f(n) = O(g(n))_  
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
 	* such that _0 &le; f(n) &le; cg(n)_ for all _n &ge; n<sub>0</sub>_ 
  
@@ -93,7 +94,7 @@ __&Omega;-notation__
 
 * _f(n) = &Omega;(g(n))_ __and__ _g(n) = &Omega;(h(n))_ __imply__ _f(n) = &Omega;(h(n))_
 * _f(n) = &Omega;(g(n))_ __is like__ _a &ge; b_
-* `Proof` _f(n) = &Omega;(g(n))_ 
+* `Proof` _f(n) = &Omega;(g(n))_  
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
 	* such that _0 &le; cg(n) &le; f(n)_ for all _n &ge; n<sub>0</sub>_ 
  
@@ -161,6 +162,7 @@ __Primality Testing Problem__ (_PTP_): Given a positive integer greater than 1, 
 *	This problem can be solved by the _AKS_ algorithm deterministically and unconditionally in _O(log(n))_.
 *	_PTP_ is `tractable`
 
-__Fermat's Little Theorem__
+__Fermat's Little Theorem__  
+
 
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>exam_one_sample</title></head><body><h2 id="sample-problems">Sample Problems</h2>
+<p><strong>How many digits do you need to represent a number <code>N</code> in base <code>b</code></strong>  </p>
+<blockquote>
+<p>&lfloor;log<sub>b</sub>N&rfloor; + 1</p>
+</blockquote>
+<p><strong>Prove the following: if a &#8800; b, then log<sub>b</sub>N = &Theta;(log<sub>a</sub>N)</strong>  </p>
+<blockquote>
+<p>Using the change of base formula, you can change the base of any log to another. So asymptotically, they are the same.</p>
+</blockquote>
+<p><strong>If algorithm A run time is a <code>logarithmic function</code> of its input and algorithm B run time is a <code>linear function</code> of its input, which is asymptotically faster?</strong></p>
+<blockquote>
+<p>Algorithm A is faster, because logarithmic functions &gt; linear function</p>
+</blockquote>
+<p><strong>Prove the following: n<sup>3</sup> = O(4<sup>log(n)</sup>)</strong></p>
+<blockquote>
+<p><strong>Reduce O(4<sup>log(n)</sup>)</strong><br />
+&emsp;&emsp;4<sup>log(n)</sup> = n<sup>log<sub>2</sub>(4)</sup> = n<sup>2</sup><br />
+<strong>Find constant <em>c</em> such that n<sup>3</sup> = &Omega;(4<sup>log(n)</sup>)</strong><br />
+&emsp;&emsp;n<sup>3</sup> &gt; <em>c</em> &times; n<sup>2</sup> with <em>c</em> = 1<br />
+&emsp;&emsp;n<sup>3</sup> &le; <em>c</em> &times; n<sup>2</sup> with <em>c</em> &ge; n<br />
+&emsp;&emsp;Thus, n<sup>3</sup> = &Omega;(4<sup>log(n)</sup>) with constant <em>c</em> = n</p>
+</blockquote>
+<p><strong>What is the security of the <code>RSA protocol</code> based on?</strong></p>
+<blockquote>
+<p>Based on the <strong>factoring problem</strong>, because of the difficulty of factoring the product of two large prime numbers.</p>
+</blockquote>
+<p><strong>In an RSA cryptosystem, <code>p = 7</code> and <code>q = 11</code>. Find appropriate exponents <code>d</code> and <code>e</code>.</strong>  </p>
+<blockquote>
+<p><strong>Find the <em>gcd(e, (7 - 1)(11 - 1)) = 1___<br />
+&emsp;&emsp;_gcd(e, (7 - 1)(11 - 1)) = 1</em><br />
+&emsp;&emsp;<em>gcd(e, 60) = 1</em><br />
+&emsp;&emsp;__e = 7</strong><br />
+<strong>Solve for d</strong><br />
+&emsp;&emsp;<em>d = e<sup>-1</sup></em> mod <em>(p - 1)(q - 1)</em><br />
+&emsp;&emsp;<em>d = 7<sup>-1</sup></em> mod <em>60</em><br />
+&emsp;&emsp;<em>7 &times; d = 1</em> mod <em>60</em><br />
+<strong>Find the gcd(7, 60) = 1</strong><br />
+&emsp;&emsp;<em>60 = 8 &times; 7 + 4</em><br />
+&emsp;&emsp;<em>7 = 1 &times; 4 + 3</em><br />
+&emsp;&emsp;<em>4 = 1 &times; 3 + 1</em><br />
+&emsp;&emsp;<em>3 = 3 &times; 1 + 0</em><br />
+<strong>Find the linear combination</strong><br />
+&emsp;&emsp;<em>1 = 4 - 1 &times; 3</em><br />
+&emsp;&emsp;<em>1 = 4 - (7 - 1 &times; 4)</em><br />
+&emsp;&emsp;<em>1 = 4 - 7 + 4</em><br />
+&emsp;&emsp;<em>1 = -7 + 2(60 - 8 &times; 7)</em><br />
+&emsp;&emsp;<em>1 = -7 + (2 &times; 60) - (16 &times; 7)</em><br />
+&emsp;&emsp;<em>1 = (2 &times; 60) + (-17 &times; 7)</em><br />
+<strong>Use 1 = ax + by</strong><br />
+&emsp;&emsp;<em>1 = (2)(60) + (-17)(7)</em><br />
+&emsp;&emsp;<strong>b = d = -17</strong><br />
+<strong>Substitute d</strong><br />
+&emsp;&emsp;<em>d = x</em> mod <em>60</em><br />
+&emsp;&emsp;<em>-17 = x</em> mod <em>60</em><br />
+&emsp;&emsp;<em>x = 43</em> mod <em>60</em><br />
+&emsp;&emsp;<strong>d = 43 mod 60</strong>  </p>
+</blockquote></body></html>
