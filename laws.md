@@ -175,7 +175,6 @@ __Fermat's Little Theorem__
 
 * If _p_ is prime, then for every _1 &le; a &lt; p_,
 	* _a<sup>p-1</sup> &equiv; 1_ (mod _p_)
-* `Proof`
 
 
 
