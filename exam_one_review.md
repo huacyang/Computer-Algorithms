@@ -4,7 +4,7 @@ __Give a justiﬁcation why improvements in hardware are typically not sufﬁcie
 > The algorithm will be so slow that even massive improvements in hardware won't have a useful impact. Exponential growth (running time) > multiplication growth (Moore's Law).
 
 __We have 3 algorithms for the same problem where the ﬁrst runs in _exponential time_, the second in _logarithmic time_ and the third in _linear time_ as a function of the same input. Which algorithm do you prefer to use?__
-> `logarithmic time` &gt; `linear time` &gt; `Exponential time`
+> __logarithmic time__ &gt; __linear time__ &gt; __Exponential time__
 
 __You may be provided running times of different algorithms and asked to show which running time dominates asymptotically__
 > See [Asymptotic Notation](laws.md#asymptotic-notation) 
@@ -44,7 +44,6 @@ __How much does the size of the representation of a number changes when we chang
 >	* The size of integer _N_ in base _a_ is the same as its size in base _b_, times a constant factor _log<sub>a</sub>b_. 
 >	* In big-_O_ notation, the base (a constant in this case) is irrelevant. Therefore we write the size simply as __O(log N)__.
 
-
 __What is the running time of the addition operation for two _n_-bit numbers (think in terms of bit complexity)?__
 
 >	* For adding two binary representations, the maximal number of bit operations for the sum is _n_ additions with carries. At most _2n_ bit operations are used to perform the addition of two _n_-bit integers.
@@ -70,8 +69,7 @@ __Provide a recursive formula for the multiplication of two numbers.__
 >			* return _2z_
 >		* else:
 >			* return _x &plus; 2z_
->	* `Run-time` is __O(n<sup>2</sup>)__
-
+>	* Run-time is __O(n<sup>2</sup>)__
 
 > See [Arithmetic](laws.md#arithmetic) 
 
@@ -103,17 +101,29 @@ __What does Fermat’s Little Theorem specify? Prove it.__
  
 > If _p_ is prime, then for every _1 &le; a &lt; p_, __a<sup>p-1</sup> &equiv; 1 (mod p)__
 
-
 > For proof, see [Primality](laws.md#primality)
 
 __What is the importance of Fermat’s little theorem in the RSA protocol?__
 > The __Fermat's little theorem__ is needed in the proof of correctness of the _RSA_ algorithm. 
 
 __How can we efﬁciently perform modular exponentiation? What is the running time of the approach?__
+> We can do better by starting with _x_ and __squaring repeatedly__ modulo _N_  
+> `x mod N -> x^2 mod N -> x^4 mod N -> x^8 mod N -> ... -> x^(2*floor(log y)) mod N`  
+> Each takes just O(log<sup>2</sup> N) time to compute, and in this case there are only _log y_ multiplications.
+
+> The running time of this approach is __O(n<sup>2</sup>)__.
 
 __What does Euclid’s rule specify? Prove it.__
+> Given two integers _a_ and _b_, it finds the largest integer that divides both of them, known as their __greatest common divisor__ (_gcd_).
+
+> For proof, see [Modular Exponentiation](laws.md#modular-exponentiation)
 
 __What is Euclid’s algorithm for ﬁnding the greatest common divisor? What is its running time and why?__
+> __Euclid's rule__:  
+> if _x_ and _y_ are positive integers with _x &ge; y_, then _gcd(x,y) = gcd(x mod y, y)_
+
+> __Run-time__  
+> If _x_ and _y_ are _n_-bit integers, then the base case will be reached within _2n_ recursive calls. Each call involves a quadratic-time division (_x mod y_), the total run-time is __O(n<sup>3</sup>)__.
 
 __Show that if _d_ divides both _a_ and _b_, and _d = a &times; x &plus; b &times; y_ for some integers _x_ and _y_, then _d = gcd(a, b)_.__
 

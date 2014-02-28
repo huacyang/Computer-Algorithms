@@ -164,6 +164,38 @@ __Modular Multiplication__
 = 22
 ~~~
 
+## Modular Exponentiation
+
+__Euclid's Rule__
+
+* If _x_ and _y_ are positive integers with _x &ge; y, then _gcd(x,y) = gcd(x mod y, y).
+* `Proof` : _gcd(x,y) = gcd(x - y, y)_
+	* Any integer that divides both _x_ and _y_ must also divide _x - y_, so _gcd(x,y) &le; gcd(x - y,y)_.
+	* Likewise, any integer that divides both _x - y_ and _y_ must also divide both _x_ and _y_, so _gcd(x,y) &ge; gcd(x - y,y)_.
+
+~~~
+Input: two integers a and b with a >= b >= 0
+Output: gcd(a, b)
+
+function Euclid(a, b)
+	if b = 0:
+		return a
+	return Euclid(b, a mod b)
+~~~
+
+__Extension of Euclid's Algorithm__
+
+~~~
+Input: two positive integers a and b with a >= b >= 0
+Output: integers x,y,d such that d = gcd(a,b) and ax + by = d
+
+function extended-Euclid(a, b)
+	if b = 0:
+		return (1, 0, a)
+	(x', y', d) = extended-Euclid(b, a mod b)
+	return (y', x' - floor(a/b)y', d)
+~~~
+
 ## Primality
 
 __Primality Testing Problem__ (_PTP_): Given a positive integer greater than 1, determine whether or not it is prime.
