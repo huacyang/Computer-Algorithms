@@ -190,7 +190,7 @@ __Modular Division__ : For any _a_ mod _N_, _a_ has a multiplicative inverse mod
 
 __Euclid's Rule__
 
-* If _x_ and _y_ are positive integers with _x &ge; y, then _gcd(x,y) = gcd(x mod y, y).
+* If _x_ and _y_ are positive integers with _x &ge; y_, then _gcd(x,y) = gcd(x mod y, y)_.
 * `Proof` : _gcd(x,y) = gcd(x - y, y)_
 	* Any integer that divides both _x_ and _y_ must also divide _x - y_, so _gcd(x,y) &le; gcd(x - y,y)_.
 	* Likewise, any integer that divides both _x - y_ and _y_ must also divide both _x_ and _y_, so _gcd(x,y) &ge; gcd(x - y,y)_.

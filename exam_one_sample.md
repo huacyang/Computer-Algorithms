@@ -87,7 +87,15 @@ __What does the Master theorem specify?__
 >	* __O(n<sup>d</sup>log(n))__ if _d = log<sub>b</sub>a_
 
 __Provide a recursive formula for performing modular exponentiation__
-> Pikachu!
+> __modexp(x, y, N)__  
+> &emsp;if(y = 0): return 0  
+> &emsp;z = modexp(x, &lfloor;y/2&rfloor;, z)  
+> &emsp;if (y is even):  
+> &emsp;&emsp;return z<sup>2</sup> mod N  
+> &emsp;else:  
+> &emsp;&emsp;return x &times; z<sup>2</sup> mod N
+
+> Run-time is __O(n<sup>3</sup>)__
 
 __Give a divide-and-conquer algorithm for integer multiplication that takes advantage of Gauss' observation so as to achieve a better running time than _O(n<sup>2</sup>)_.__
 > __xy = 2<sup>n</sup>x<sub>l</sub>y<sub>l</sub> + 2<sup>n/2</sup>(x<sub>l</sub>y<sub>r</sub> + x<sub>r</sub>y<sub>l</sub>) + x<sub>r</sub>y<sub>r</sub>__
