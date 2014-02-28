@@ -11,9 +11,9 @@ __You may be provided running times of different algorithms and asked to show wh
 
 __Provide the definition of _Big-O_, _Omega_, and _Theta_.__
 >	* __O-notation__ is the `asymptotic upper bound`
->		* _f(n) = O(g(n))_ __imply__ f(n) > g(n)
+>		* _f(n) = O(g(n))_ __imply__ f(n) &le; g(n)
 >	* __&Omega;-notation__ is the `asymptotic lower bound`
->		* _f(n) = &Omega;(g(n))_ __imply__ f(n) < g(n)
+>		* _f(n) = &Omega;(g(n))_ __imply__ f(n) &ge; g(n)
 >	* __&Theta;-notation__ asymptotically bounds a function from `above and below`
 >		* _f(n) = &Theta;(g(n))_ __imply__ f(n) = g(n)
 
