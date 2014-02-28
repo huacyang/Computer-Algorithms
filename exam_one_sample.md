@@ -132,13 +132,22 @@ __What is the running time of the above solution?__
 >	* 1 > log<sub>4/3</sub>1
 >	* Run-time is O(n<sup>d</sup>) = O(n<sup>1</sup>) = __O(n)__
 
+__Describe an algorithm that, given _n_ integers in the range _0_ to _k_, preprocesses its input and then answers any query about how many of the _n_ integers fall into the range _[a...b]_ in _O(1)_ time. Your algorithm should use _&Theta;(n + k)_ preprocessing time. Argue about its correctness and running time.__
+> Algorithm will use a counter array of size _k_, __c[0..k]__, and set _c[i]_ to be the number of elements less than or equal to _i_.
+
+> By using the __counting sort__, this will take __&Theta;(n + k)__.
+
+> To compute the elements in the range _[a...b]_, you do __c[b] - c[a-1]__, which is __O(1)__. 
+
 __Consider an alphabet _A_ where characters have frequencies _f(c), Select<sub>c</sub> within A_ and _x,y_ are the two lowest frequency characters. Show that there exists an optimal prefix code for alphabet _A_, where _x_ and _y_ have the same length and differ only in the last bit.__
-> Use __Hoffman tree__, where the lowest frequent characters are located at the leafs.  
+> Use __Huffman tree__, where the lowest frequent characters are located at the leafs.  
 
 > To do this, specify that _f(a) > f(x)_ and _f(b) > f(y)_.   
 > &emsp;Insert _a_ and _b_ into the tree,  
-> &emsp;switch _a_ with _x_ and _b_ with _y_  
-> &emsp;such that _a_ is the parent of _x_ and _b_ is the parent of _y_.
+> &emsp;switch _a_ with _x_ and _b_ with _y_,  
+> &emsp;such that _a_ is a higher frequency than _x_ and _b_ is a higher frequency then _y_.
+
+> Since swap does not increase the cost, the resulting tree is still an optimal tree.
 
 > As a result, _x_ and _y_ are now at the bottom (leaves of the tree) because they have the lowest frequency. Additionally they are siblings of each other because they both differ by one bit
 

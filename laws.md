@@ -86,7 +86,6 @@ __&Theta;-notation__
 * `Proof` : _f(n) = &Theta;(g(n))_
 	* there exist positive constants _c<sub>1</sub>_, _c<sub>2</sub>_, and _n<sub>0</sub>_, 
 	* such that _0 &le; c<sub>1</sub>g(n) &le; f(n) &le; c<sub>2</sub>g(n)_ for all _n &ge; n<sub>0</sub>_ 
- 
 
 __O-notation__
 
@@ -96,15 +95,33 @@ __O-notation__
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
 	* such that _0 &le; f(n) &le; cg(n)_ for all _n &ge; n<sub>0</sub>_ 
  
-
 __&Omega;-notation__
 
 * _f(n) = &Omega;(g(n))_ __and__ _g(n) = &Omega;(h(n))_ __imply__ _f(n) = &Omega;(h(n))_
 * _f(n) = &Omega;(g(n))_ __is like a &ge; b__
 * `Proof` : _f(n) = &Omega;(g(n))_
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
-	* such that _0 &le; cg(n) &le; f(n)_ for all _n &ge; n<sub>0</sub>_ 
- 
+	* such that _0 &le; cg(n) &le; f(n)_ for all _n &ge; n<sub>0</sub>_
+
+## Divide and Conquer
+
+__Master Theorem__
+
+If _T(n) = aT(&lceil;n/b&rceil;) + O(n<sup>d</sup>)_ for some constants _a > 0_, _b > 1_, and _d &ge; 0_,  
+&emsp;__a__ is the branching factor,  
+&emsp;__b__ is the reduction of each call,  
+&emsp;and __d__ is the merge cost.
+
+* Run-time of __T(n)__ =
+	* __O(n<sup>d</sup>)__ if _d > log<sub>b</sub>a_
+	* __O(n<sup>d</sup>log n)__ if _d = log<sub>b</sub>a_
+	* __O(n<sup>log<sub>b</sub>a</sup>)__ if _d < log<sub>b</sub>a_
+* For __Integer Multiplication__
+	* __a__ = 3, __b__ = 2, __d__ = 1
+* For __Binary Search__
+	* __a__ = 1, __b__ = 2, __d__ = 0
+* For __Merge Sort__
+	* __a__ = 2, __b__ = 2, __d__ = 0
 
 ## Factorization
 
