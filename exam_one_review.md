@@ -33,7 +33,7 @@ __What is the “primality” problem and what is the “factoring” problem? W
 > See [Primality](laws.md#primality) 
 
 __How many digits do you need to represent a number _N_ in base _b_?__
-> &lfloor;log<sub>b</sub>N&rfloor; &plus; 1
+> &lfloor;log<sub>b</sub>N&rfloor; + 1
 
 __How much does the size of the representation of a number changes when we change bases?__
 
@@ -68,7 +68,7 @@ __Provide a recursive formula for the multiplication of two numbers.__
 >		* if _y_ is even:
 >			* return _2z_
 >		* else:
->			* return _x &plus; 2z_
+>			* return _x + 2z_
 >	* Run-time is __O(n<sup>2</sup>)__
 
 > See [Arithmetic](laws.md#arithmetic) 
@@ -122,13 +122,39 @@ __What is Euclid’s algorithm for ﬁnding the greatest common divisor? What is
 > __Euclid's rule__:  
 > if _x_ and _y_ are positive integers with _x &ge; y_, then _gcd(x,y) = gcd(x mod y, y)_
 
-> __Run-time__  
+> __Run-time__:  
 > If _x_ and _y_ are _n_-bit integers, then the base case will be reached within _2n_ recursive calls. Each call involves a quadratic-time division (_x mod y_), the total run-time is __O(n<sup>3</sup>)__.
 
-__Show that if _d_ divides both _a_ and _b_, and _d = a &times; x &plus; b &times; y_ for some integers _x_ and _y_, then _d = gcd(a, b)_.__
+__Show that if _d_ divides both _a_ and _b_, and _d = ax + by_ for some integers _x_ and _y_, then _d = gcd(a, b)_.__
+>	* __Let d = gcd(a, b)__  
+>		* __by definition:__ there exist integers _a&prime;_ and _b&prime;_  
+>			* such that _a = a&prime;d_ and _b = b&prime;d_  
+>		* __by substitution:__ _a&prime;dx + b&prime;dy = d_  
+>		* __by dividing _d_:__ _a&prime;x + b&prime;y = 1_  
 
-__What is the extended Euclid’s algorithm for ﬁnding the greatest common divisor d of two numbers _a_ and _b_, as well as numbers _x_ and _y_, so that _d = a &times; x &plus; b &times; y_? Prove its correctness (you will need to prove Euclid’s algorithm ﬁrst and then the extension)__
+>	* __Let e = gcd(x, y)__  
+>		* __by definition:__ there exist integers _x&prime;_ and _y&prime;_  
+>			* such that _x = ex&prime;_ and _y = ey&prime;_  
+>		* __by substitution:__ _a&prime;ex&prime; + b&prime;ey&prime; = 1_  
+>		* __by reduction:__ _e(a&prime;x&prime; + b&prime;y&prime;) = 1_  
+>			* since _a&prime;x&prime; + b&prime;y&prime;_ is an integer  
+>		* __by implication:__ _e = 1_ or _e = -1_  
+>		* __by definition:__ _e = 1_ (gcd must be positive)
+
+__What is the extended Euclid’s algorithm for ﬁnding the greatest common divisor _d_ of two numbers _a_ and _b_, as well as numbers _x_ and _y_, so that _d = ax + by_? Prove its correctness (you will need to prove Euclid’s algorithm ﬁrst and then the extension)__
 
 __When does the multiplicative inverse of a number _x_ exists modulo _N_ and why?__
+> The __multiplicative inverse__ exists when _gcd(a, N) &le; 1_
+
+> Let _a_ and _N_ be even numbers
+
+>	* then _a_ mod _N_ is always even
+>		* since _a_ mod _N = a - kN_ for some _k_
+>		* we can be certain that _gcd(a, N)_ divides _ax mod N_, because it can be rewritten as: _ax + kN_
+>	* so if _gcd(a, N) > 1_, then _ax &#8800; 1_ mod _N_
+>		* no matter what _x_ might be
+>	* therefore, _a_ cannot have a multiplicative inverse modulo N
+
+> See [Modular Arithmetic](laws.md#modular-arithmetic)
 
 __How can you compute the multiplicative inverse modulo _N_ for two relative prime numbers? What is the running time of the corresponding algorithm?__

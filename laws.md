@@ -108,7 +108,7 @@ __&Omega;-notation__
 
 ## Factorization
 
-__Integer Factorization Problem__ (_IFP_): Given a positive integer _n &gt; 1_, find a factor _1 &lt; a &lt; n_ of _n_ such that _n = ab_ for _1 &lt; b &lt; n_.
+__Integer Factorization Problem__ (_IFP_) : Given a positive integer _n &gt; 1_, find a factor _1 &lt; a &lt; n_ of _n_ such that _n = ab_ for _1 &lt; b &lt; n_.
 
 *	Given a large positive composite integer _n &gt; 1_, find _p_ and _q_, `n = p * q`, where _p_ and _q_ are primes.
 *	This is the problem that the most famous _RSA_ cryptosystem is based on.
@@ -164,6 +164,10 @@ __Modular Multiplication__
 = 22
 ~~~
 
+__Modular Division__ : In real arithmetic, every number _a &#8800; 0_ has an inverse, _1/a_, and dividing by _a_ is the same as multiplying by this inverse.
+
+* We say _x_ is the __multiplicative inverse__ of _a_ modulo _N_ if _ax &equiv; 1_ (mod _N_)
+
 ## Modular Exponentiation
 
 __Euclid's Rule__
@@ -198,12 +202,12 @@ function extended-Euclid(a, b)
 
 ## Primality
 
-__Primality Testing Problem__ (_PTP_): Given a positive integer greater than 1, determine whether or not it is prime.
+__Primality Testing Problem__ (_PTP_) : Given a positive integer greater than 1, determine whether or not it is prime.
 
 *	This problem can be solved by the _AKS_ algorithm deterministically and unconditionally in _O(log(n))_.
 *	_PTP_ is `tractable`
 
-__Fermat's Little Theorem__
+__Fermat's Little Theorem__ : Used to proof the correctness of the _RSA_ algorithm.
 
 * If _p_ is prime, then for every _1 &le; a &lt; p_,
 	* _a<sup>p-1</sup> &equiv; 1_ (mod _p_)
