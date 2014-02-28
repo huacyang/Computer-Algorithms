@@ -2,9 +2,9 @@
 
 __Addition__
 
-* Given two binary numbers _x_ and _y_, where _x_ and _y_ are each _n_ bits long, the sum of _x_ and _y_ is __n &plus; 1__
+* Given two binary numbers _x_ and _y_, where _x_ and _y_ are each _n_ bits long, the sum of _x_ and _y_ is __n + 1__
 * `Run-time`
-	* The total running time for the addition algorithm is therefore of the form _c<sub>0</sub> &plus; c<sub>1</sub>n_, where _c<sub>0</sub>_ and _c<sub>1</sub>_ are some constants.
+	* The total running time for the addition algorithm is therefore of the form _c<sub>0</sub> + c<sub>1</sub>n_, where _c<sub>0</sub>_ and _c<sub>1</sub>_ are some constants.
 	* In other other words, the run-time is `linear`, denoted as __O(n)__. 
  
 __Multiplication__
@@ -13,12 +13,12 @@ __Multiplication__
 	* Bit-wise multiplication uses the `left-shift` technique.
 * `Run-time`
 	* The total time taken to add up these rows, doing two numbers at a time, is
-		* _O(n) &plus; O(n) &plus; ... &plus; O(n) = n &minus; 1_ times.
+		* _O(n) + O(n) + ... + O(n) = n &minus; 1_ times.
 	* The run-time is `quadratic` in the size of the inputs, denoted as __O(n<sup>2</sup>)__.
  
 __Division__
 
-* To divide an integer _x_ by another integer _y &#8800; 0_ means to find a quotient _q_ and a remainder _r_, where _x = yq &plus; r_ and _r &lt; y_.
+* To divide an integer _x_ by another integer _y &#8800; 0_ means to find a quotient _q_ and a remainder _r_, where _x = yq + r_ and _r &lt; y_.
 	* Bit-wise division uses the `right-shift` technique.
 * `Run-time`
 	* Like multiplication, the run-time is `quadratic`. 
@@ -27,7 +27,7 @@ __Recursion__
 
 * `Rule` _x &times; y:_
 	* _2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is even
-	* _x &plus; 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is odd
+	* _x + 2(x &times; &lfloor;y/2&rfloor;)_ if _y_ is odd
 
 ~~~
 Input: two n-bit integers x and y, where y >= 0
@@ -135,7 +135,7 @@ __Integer Factorization Problem__ (_IFP_) : Given a positive integer _n &gt; 1_,
 
 ## Logarithm
 
-* _log<sub>b</sub>(xy) = log<sub>b</sub>(x) &plus; log<sub>b</sub>(y)_
+* _log<sub>b</sub>(xy) = log<sub>b</sub>(x) + log<sub>b</sub>(y)_
 * _log<sub>b</sub>(x/y) = log<sub>b</sub>(x) &minus; log<sub>b</sub>(y)_
 * _log<sub>b</sub>(x<sup>n</sup>) = n log<sub>b</sub>x_
 * _log<sub>b</sub>(x) = log<sub>a</sub>x / log<sub>a</sub>b_
@@ -149,7 +149,7 @@ __Modular Arithmetic__ : a system for dealing with restricted ranges of integers
 	* _x &equiv; y_ (mod _N_) <= => _N_ divides (_x - y_) 
 * `Substitution Rule` 
 	* If _x &equiv; x&prime;_ (mod _N_) and _y &equiv; y&prime;_ (mod _N_),
-	* then _x &plus; y &equiv; x&prime; + y&prime;_ (mod _N_) and _xy &equiv; x&prime;y&prime;_ (mod _N_) 
+	* then _x + y &equiv; x&prime; + y&prime;_ (mod _N_) and _xy &equiv; x&prime;y&prime;_ (mod _N_) 
  
 
 __Modular Addition__

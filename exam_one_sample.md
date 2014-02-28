@@ -14,7 +14,7 @@ __If algorithm A run time is a `logarithmic function` of its input and algorithm
 > Algorithm A is faster, because logarithmic functions &gt; linear function
 
 __True/False: n<sup>3</sup> = O(4<sup>log(n)</sup>)__
-> __[True]__
+> __[False]__
 
 > __Reduce O(4<sup>log(n)</sup>)__
 
