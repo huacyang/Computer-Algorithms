@@ -42,7 +42,7 @@ __In an RSA cryptosystem, `p = 7` and `q = 11`. Find appropriate exponents `d` a
 >	* _d = 7<sup>-1</sup>_ mod _60_
 >	* _7 &times; d = 1_ mod _60_
 
-> __Find the gcd(7, 60) = 1__
+> __Find the gcd(60, 7) = 1__
 
 >	* _60 = 8 &times; 7 + 4_
 >	* _7 = 1 &times; 4 + 3_
@@ -122,7 +122,7 @@ __Describe a divide-and-conquer approach for selecting the _k_-th element in a s
 
 >	* __selection(S<sub>L</sub>, K)__ if _k &le; |S<sub>L</sub>|_
 >	* __v__ if _|S<sub>L</sub>| < k &le; |S<sub>L</sub>| + |S<sub>V</sub>|_
->	* __selection(S<sub>R</sub>, K - |S<sub>L</sub>| - |S<sub>V</sub>)__ if _k > |S<sub>L</sub>| + |S<sub>V</sub>|_
+>	* __selection(S<sub>R</sub>, K - |S<sub>L</sub>| - |S<sub>V</sub>|)__ if _k > |S<sub>L</sub>| + |S<sub>V</sub>|_
 
 __What is the running time of the above solution?__
 > __T(n) &le; T(3/4n) + O(n)__ <-- memorize this!
