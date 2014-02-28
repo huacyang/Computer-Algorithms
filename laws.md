@@ -121,7 +121,7 @@ If _T(n) = aT(&lceil;n/b&rceil;) + O(n<sup>d</sup>)_ for some constants _a > 0_,
 * For __Binary Search__
 	* __a__ = 1, __b__ = 2, __d__ = 0
 * For __Merge Sort__
-	* __a__ = 2, __b__ = 2, __d__ = 0
+	* __a__ = 2, __b__ = 2, __d__ = 1
 
 ## Factorization
 
