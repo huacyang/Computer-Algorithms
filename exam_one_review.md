@@ -148,6 +148,7 @@ __Show that if _d_ divides both _a_ and _b_, and _d = ax + by_ for some integers
 >	* __by definition:__ _e = 1_ (gcd must be positive)
 
 __What is the extended Euclid’s algorithm for ﬁnding the greatest common divisor _d_ of two numbers _a_ and _b_, as well as numbers _x_ and _y_, so that _d = ax + by_? Prove its correctness (you will need to prove Euclid’s algorithm ﬁrst and then the extension)__
+> Pikachu!
 
 __When does the multiplicative inverse of a number _x_ exists modulo _N_ and why?__
 > The __multiplicative inverse__ exists when _gcd(a, N) &le; 1_

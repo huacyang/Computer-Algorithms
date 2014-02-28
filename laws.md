@@ -82,7 +82,7 @@ For each message Alice -> Bob:
 __&Theta;-notation__
 
 * _f(n) = &Theta;(g(n))_ __and__ _g(n) = &Theta;(h(n))_ __imply__ _f(n) = &Theta;(h(n))_
-* _f(n) = &Theta;(g(n))_ __is like__ _a = b_
+* _f(n) = &Theta;(g(n))_ __is like a = b__
 * `Proof` : _f(n) = &Theta;(g(n))_
 	* there exist positive constants _c<sub>1</sub>_, _c<sub>2</sub>_, and _n<sub>0</sub>_, 
 	* such that _0 &le; c<sub>1</sub>g(n) &le; f(n) &le; c<sub>2</sub>g(n)_ for all _n &ge; n<sub>0</sub>_ 
@@ -91,7 +91,7 @@ __&Theta;-notation__
 __O-notation__
 
 * _f(n) = O(g(n))_ __and__ _g(n) = O(h(n))_ __imply__ _f(n) = O(h(n))_
-* _f(n) = O(g(n))_ __is like__ _a &le; b_
+* _f(n) = O(g(n))_ __is like a &le; b__
 * `Proof` : _f(n) = O(g(n))_
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
 	* such that _0 &le; f(n) &le; cg(n)_ for all _n &ge; n<sub>0</sub>_ 
@@ -100,7 +100,7 @@ __O-notation__
 __&Omega;-notation__
 
 * _f(n) = &Omega;(g(n))_ __and__ _g(n) = &Omega;(h(n))_ __imply__ _f(n) = &Omega;(h(n))_
-* _f(n) = &Omega;(g(n))_ __is like__ _a &ge; b_
+* _f(n) = &Omega;(g(n))_ __is like a &ge; b__
 * `Proof` : _f(n) = &Omega;(g(n))_
 	* there exist positive constants _c_ and _n<sub>0</sub>_, 
 	* such that _0 &le; cg(n) &le; f(n)_ for all _n &ge; n<sub>0</sub>_ 
