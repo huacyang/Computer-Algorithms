@@ -164,8 +164,9 @@ __Modular Multiplication__
 = 22
 ~~~
 
-__Modular Division__ : In real arithmetic, every number _a &#8800; 0_ has an inverse, _1/a_, and dividing by _a_ is the same as multiplying by this inverse.
+__Modular Division__ : For any _a_ mod _N_, _a_ has a multiplicative inverse modulo _N_ if and only if it is relatively prime to _N_. When this inverse exists, it can be found in time __O(n<sup>3</sup>)__ (where as usual _n_ denotes the number of bits of _N_) by running the extended Euclid algorithm.
 
+* In real arithmetic, every number _a &#8800; 0_ has an inverse, _1/a_, and dividing by _a_ is the same as multiplying by this inverse.
 * We say _x_ is the __multiplicative inverse__ of _a_ modulo _N_ if _ax &equiv; 1_ (mod _N_)
 
 ## Modular Exponentiation
