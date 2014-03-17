@@ -312,15 +312,11 @@ return currentMax\\
 \item This algorithm will use k binary searches looking for the rth largest from k sorted lists. Because binary search takes $O(log(n))$ time the total time should take k time to look through the k lists last element and log(n) time to search through the k elements each loop finding the largest. Therefore the total runtime will wind up taking $O(k * SumOf( log(m_{i}), 0 <= i <= k)$ time where there are k lists and n elements in total.
 \end{itemize}
 
-Can you do this in O(k + logk from n to 1 of logm) time?
+Can you do this in $O(k+\log k \sum_{i=1}^{k}\log m_{i}+k\log k) = O(\log k (\sum_{i=1}^{k}\log m_{i}+k))$ time?
 
 \textbf{ Answer }
 \begin{itemize}
-\item This is the correct one in latex already
-\item This is what they had on sakai
-\item Also there was a typo : the question is asking if you could do this in $O(k+\log k \sum_{i=1}^{n}\log m_{i})$ time,
-\item This should actually be $O(k+\log k \sum_{i=1}^{k}\log m_{i}+k\log k) = O(\log k (\sum_{i=1}^{k}\log m_{i}+k))$.
-\item There was a missing term $k\log k$.
+\item I do not know
 \end{itemize}
 
 \end{enumerate}
