@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1395022706 "hw_2.tex" "hw_2.pdf" "hw_2" 1395022707
+["pdflatex"] 1395023289 "hw_2.tex" "hw_2.pdf" "hw_2" 1395023290
   "/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -65,8 +65,8 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/verbatim.sty" 1312409015 7125 6b8323deb5c5c3a19b248762654143eb ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/xspace.sty" 1312409015 4405 b7f0681f78908bf1aa3cd73228e9fd38 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "hw_2.aux" 1395022707 8 a94a2480d3289e625eea47cd1b285758 ""
-  "hw_2.tex" 1395022695 18793 d0e4bbb074daf4558c3354dd0b4cc1d9 ""
+  "hw_2.aux" 1395023290 8 a94a2480d3289e625eea47cd1b285758 ""
+  "hw_2.tex" 1395023272 19267 067c78f7eb3c322359ba235ff5114b6b ""
   (generated)
   "hw_2.log"
   "hw_2.aux"
