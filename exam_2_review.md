@@ -2,7 +2,11 @@
 
 #### What is the main principle behind greedy algorithms?
 
+The __Greedy algorithms__ build up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. 
+
 #### Why does the greedy algorithm work for the coin changing problem given the US coin system?
+
+
 
 #### What is the idea in Huffman encoding in order to achieve data compression? What is the prefix-free property?
 
