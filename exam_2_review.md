@@ -2,19 +2,82 @@
 
 #### What is the main principle behind greedy algorithms?
 
-The __Greedy algorithms__ build up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. 
+> The __Greedy algorithms__ build up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. 
 
 #### Why does the greedy algorithm work for the coin changing problem given the US coin system?
 
+> __Theorem.__ Greed is optimal for U.S. coinage: 1, 5, 10, 25, 100.
 
+> __Proof.__ (by induction on _x_)  
+> * Consider optimal way to change _c<sub>k</sub> &le; x &lt; c<sub>k+1</sub>_ : greedy takes coin k.
+> * We claim that any optimal solution must also take coin _k_.
+>	- if not, it needs enough coin of type _c<sub>1</sub>, ..., c<sub>k-1</sub>_ to add up to _x_
+>	- table below indicates no optimal solution can do this.
+> * Problem reduces to coin-changing _x - c<sub>k</sub>_ cents, which, by induction, is optimally solved by greedy algorithm.
+
+> k | c<sub>k</sub> | Optimal solutions | Max value
+> --- | --- | --- | ---
+> 1 | 1 | P &le; 4 | -
+> 2 | 5 | N &le; 1 | 4
+> 3 | 10 | N + D &le; 2 | 4 + 5 = 9
+> 4 | 25 | Q &le; 3 | 20 + 4 = 24
+> 5 | 100 | no limit | 75 + 24 = 99
+
+> __Example.__ Someone wants to give change to a customer in coins, what's the best way?  
+> * The highest coin is chosen that does not exceed the amount of change currently left to give.
+> * This loop continues until there is no more change to give.
+> * Such that, if change is 35 cents, then it starts by selecting a quarter which is 25 cents, a dime, ..., so on.
 
 #### What is the idea in Huffman encoding in order to achieve data compression? What is the prefix-free property?
 
+> __Huffman Coding__ is used to compress data in order to save space.
+
+> * In order to save space, Huffman coding uses a __prefix-free binary tree__ in order to encode.
+> * In order to optimize the tree and save as much space as possible, we want to make sure each leaf corresponds to a symbol.
+>	- In this method, the number of bits required for a symbol is exactly the depth of the tree.
+> * Althernatively, we can calculate the cost by seeing that the frequency of any node is the sum of the frequencies of decendant leaves.
+
 #### Provide the Huffman encoding algorithm and argue its running time.
+
+> __Cost.__ The sum of the frequencies of all leaves and nodes except the root.
+> * We also know that the lowest frequencies must be at the bottom of the tree.
+
+> To construt the tree:
+> * First find the two nodes with the lowest frequency _i_, _j_.
+> * Then, assign them to a node with the frequency _i + j_.
+> * Continue this process until all frequencies are represented as leaves in the tree.
+
+> __Run Time.__ Building the tree will take _O(nlog(n))_, if a heap is used.
 
 #### Describe the greedy algorithm for logical reasoning with Horn formulas.
 
+> __Horns Formulas.__ A set of expressions with literals Implications and Negative Clauses.
+
+> __Implications.__  
+> * Left hand side is an __AND__ of any number of positive literals.
+> * Right hand side is a single positive literal _(Z<sup>w</sup>) -> u_.
+
+> __Negative Clauses.__  
+> * Consist of an __OR__ of any number of negative literals (_!u_ OR _!v_ OR _!y_).
+
+> __Strategy.__  
+> * Start with all variables as false.
+> * Then we start to make some true, one by one, to satisfy the implications (_RHS_).
+> * Then turn to the negative clauses and make sure their satisfied.
+> _Note._ If a certain set of variables is set to true, then they must be true in any satisfying assignment.
+
 #### What is the property of the greedy algorithm for the set cover example? Prove it.
+
+> __Example.__ You have a set of schools _S<sub>i</sub>_, and you want to see how many schools from the set will cover the country, essencially outputting a set of _S<sub>x</sub>_ schools.  
+> * More generally, we can see that _B_ contains _n_ elements and that the optimal cover consists of _k_ sets, then the greedy will use __(k ln(n))__ sets.
+
+> __Strategy.__  
+> * Use greedy to grab the largest sets first without going over the contraint.
+> * School example (grab school that covers the largest without going over and second largest without going over and so on).
+> * Let _nt_ be the number of elements still not covered after _t_ iterations, _k_ sets are needed for optimal therefore _nt/k_ extra will be needed.
+> * _nt + 1 <= nt - nt/k = nt(1 - 1/k)_
+
+> __Run Time.__ The approximation value of this greedy vs. optimal is _ln(n)_.
 
 ## Elements of Dynamic Programming
 
