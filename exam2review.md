@@ -311,11 +311,56 @@
 
 #### Provide the algorithm that performs breadth-ﬁrst search on a graph. What is the inductive argument for the correctness of the approach? What is the running time of the algorithm?
 
+> __Psudocode.__  
+> ```c
+> // Input: Graph G = (V,E), directed or undirected; vertex s element of V
+> // Output: For all vertices u reachable from s, dist(u) is set to the distance from s to u
+>
+> procedure bfs(G,s)
+>	for all u elemtn of V:
+>		dist(u) = infinity
+> 	dist(s) = 0
+>	Q = [s] // queue containing just s
+>	while Q is not empty:
+>		u = eject(Q)
+>		for all edges(u,v) element of E:
+>			if dist(v) = infinity:
+>				inject(Q,v)
+>				dist(v) = dist(u) + 1
+> ```
+
+> __Induction.__ For each _d_ = 0,1,2,...,
+
+> 1. All nodes at distance &le; _d_ from _s_ have their distances correctly set.
+> 2. All other nodes have their distances set to &#8734;.
+> 3. The queue contains exactly the nodes at distance _d_.
+
+> __Run-time.__ The overall running time of this algorithm is linear, __O(|v| + |e|)__, for exactly the same reasons as _depth-first search_.
+
 #### What is the deﬁnition of a single-source shortest path problem? What is the deﬁnition of a single-destination shortest path problem? What is the deﬁnition of a single-pair shortest path problem? What is the deﬁnition of all-pairs shortest path problem? Which of these problems are equivalent? Do we know faster algorithms for the single-pair shortest path problem than the single-source shortest path problem?
+
+> The __single-source shortest path problem__, in which we have to find shortest paths from a source vertex _v_ to all other verticies in the graph.
+
+> The __single-destination shortest path problem__, in which we have to find shortest paths from all vertices in the directed graph to a single destination vertex _v_.  
+> * This can be reduced to the _single-source shortest path problem_ by reversing the arcs in the directed graph.
+
+> The __single-pair shortest path problem__, in which we have to find the path with the fewest edges.
+
+> The __all-pairs shortest path problem__, in which we have to find shortest paths between every pair of verticies _v_,_v&#39;_ in the graph.
 
 #### What is the “optimal substructure” property of shortest paths? Prove its validity.
 
+> __Optimal Substructure Property.__  
+> * If a node _x_ lies in the shortest path from a source node _u_ to destination node _v_,
+> * Then the shortest path from _u_ to _v_ is combination of shortest path from _u_ to _x_ and shortest path from _x_ to _v_.
+
 #### What happens with shortest paths on graphs that contain negative cycles? Can a shortest path contain positive cycles?
+
+> The shortest-path problem is _ill-posed_ in graphs with __negative cycles__. 
+> * There would be no minimum path. 
+> * By going round the negative path, we find paths of lengths 0,-1,-2,.., -&#8734;.
+
+> The solution cannot have any __positive cycles__, because the cycle could simply be removed giving a lower weight path.
 
 ## Dijkstra's Algorithm
 
