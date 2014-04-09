@@ -102,18 +102,18 @@
 
 > ```c
 > procedure dag-shortest-paths(G,l,s)
->  for all u element of V:
+>  for all u element of K:
 >      dist(u) = infinity
 >      prev(u) = nil
 >
 >  dist(s) = 0
 >  Linearize G
->  for each u element V, in linearized order:
->      for all edges (u,v) element of E:
->          update(u,v)
+>  for each u element K, in linearized order:
+>      for all edges (u,k) element of E:
+>          update(u,k)
 > ```
 
-> The overall running time is __O(V + E)__.
+> The overall running time is __O(k + E)__.
 
 #### Consider a directed graph with (possibly negative) weighted edges, in which the shortest path between any two vertices is guaranteed to have at most _k_ edges. Write an algorithm in pseudocode that finds that shortest path between two vertices _u_ and _v_ in O(k|E|) time.
 
