@@ -39,10 +39,10 @@
 
 > __Solution.__  
 > ```c
-> if (vi > V)
+> if (vi > v)
 >	K(i,v) = K(v, i-1)
 > else
->	K(i,v) = max[K(v,i-1), k(v-vi, i-1 + vi)]
+>	K(i,v) = max[K(v,i-1), k(v-vi,i-1) + vi)]
 > return K(v,i)
 > ```
 
@@ -51,11 +51,11 @@
 
 #### What is the running time of the dynamic programming solution for the above problem and why?
 
-> __O(nV)__
+> __O(i * v)__
 
 > Since we defined our subproblems according to  
-> * V = the volume of the trunk
-> * n = the amount of the bags we have
+> * v = the volume of the trunk
+> * i = the amount of the bags we have
 
 #### A subsequence is palindromic if it is the same whether read left to right or right to left. For instance, the sequence: A,C,G,T,G,T,C,A,A,A,A,T,C,G has many palindromic subsequences, including A,C,G,C,A and A,A,A,A (on the other hand, the subsquence A,C,T is not palindromic). Devise an algorithm that takes a sequence x[1,...,n] and returns the length of the longest palindromic subsequence. Its running time should be _O(n<sub>2</sub>)_.
 
@@ -96,8 +96,8 @@
 
 > 1. We need to do this in order to run DFS and organize the nodes in a post-order increasing order.
 > 2. We have a property that says that the nodes with the highest post order is the source and the lowest post order are sinks, in other words they reverse G to get the sinks of the graph.
-> 3. Run the connected component alog of undirected graphs to find the connected components.
-> 4. Since they are now organized according to the post order , I now have the sets of Strongly Connected Components thanks to algo in part two.
+> 3. Run the connected component along the undirected graphs to find the connected components.
+> 4. Since they are now organized according to the post-order, I now have the sets of Strongly Connected Components thanks to algo in part two.
 
 #### What is the running time of the efficient algorithm and why?
 
