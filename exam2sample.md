@@ -131,3 +131,12 @@
 
 > The overall running time is __O(k|E|)__.
 
+#### Consider a graph _G(V,E)_ with weights _w_. Furthermore, define a value function _h:V -> R_ for every vertex of the graph. Then define a new set of weights as follows: _&#373;(u,v) = w(u,v) + h(u) - h(v)_ for every edge(u,v) &#8712; E. Prove the following facts:
+
+* A path _p = &lt; v<sub>0</sub>,v<sub>1</sub>,...,v<sub>k</sub> &gt;_ is a shortest path on G according to weights &#373; only if it is also a shortest path according to weights _w_.
+
+> Pikachu!
+
+* Moreover, negative cycles exist on the graph _G_ according to weights &#373; only if they exist for the weights _w_ as well.
+
+> Pikachu!
