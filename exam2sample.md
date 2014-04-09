@@ -57,7 +57,7 @@
 > * v = the volume of the trunk
 > * i = the amount of the bags we have
 
-#### A subsequence is palindromic if it is the same whether read left to right or right to left. For instance, the sequence: A,C,G,T,G,T,C,A,A,A,A,T,C,G has many palindromic subsequences, including A,C,G,C,A and A,A,A,A (on the other hand, the subsquence A,C,T is not palindromic). Devise an algorithm that takes a sequence x[1,...,n] and returns the length of the longest palindromic subsequence. Its running time should be _O(n<sub>2</sub>)_.
+#### A subsequence is palindromic if it is the same whether read left to right or right to left. For instance, the sequence: A,C,G,T,G,T,C,A,A,A,A,T,C,G has many palindromic subsequences, including A,C,G,C,A and A,A,A,A (on the other hand, the subsquence A,C,T is not palindromic). Devise an algorithm that takes a sequence x[1,...,n] and returns the length of the longest palindromic subsequence. Its running time should be _O(n<sup>2</sup>)_.
 
 > Apply the __longest common subsequence algorithm__.  
 > * We have sequence S and T (S reversed).
