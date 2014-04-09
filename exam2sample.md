@@ -34,15 +34,15 @@
 
 > __Subproblems.__  
 > For the problem we can take volume _V_ (volume of the trunk) using a matrix our subproblems.  
-> * When _v = 0_, what's the max amount of money I can take and with which bags (V=1, v=2, ..., v).
+> * When _v = 0_, what's the max amount of money I can take and with which bags (v=1, v=2, ..., v).
 > * Since each bag is unique, we can't repeat any bags, so we need an additional variable to keep track the volume of the bags, the variable will also be part of our optimal solution.
 
 > __Solution.__  
 > ```c
-> if (v<sub>i</sub> &gt; V)
+> if (vi > V)
 >	K(i,v) = K(v, i-1)
 > else
->	K(i,v) = max[K(v,i-1), k(v-v<sub>i</sub>, i-1 + v<sub>i</sub>)]
+>	K(i,v) = max[K(v,i-1), k(v-vi, i-1 + vi)]
 > return K(v,i)
 > ```
 
