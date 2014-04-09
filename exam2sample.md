@@ -100,8 +100,6 @@
 
 ![single-source shortest paths](img/single-source-shortest-paths.png)
 
-#### Consider a directed graph with (possibly negative) weighted edges, in which the shortest path between any two vertices is guaranteed to have at most _k_ edges. Write an algorithm in pseudocode that finds the shortest path between two vertices _u_ and _v_ in _O(k|E|) times.
-
 > ```c
 > procedure dag-shortest-paths(G,l,s)
 >  for all u element of V:
