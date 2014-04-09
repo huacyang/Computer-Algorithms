@@ -17,7 +17,7 @@
 #### Dijkstra's running time depends on the implementation of the priority queue data structure. An array implementation results in a running time of _O(|V|<sup>2</sup>)_ and is preferred in dense graphs. A binary heap implementation results in _O(|V|log|V| + |E|)_ and is preferred in sparse graphs.
 
 > __False.__  
-> A binary heap results in _O((|V| * |E|) log|V|).
+> A binary heap results in __O((|V| * |E|) log|V|)__.
 
 > __Side-note.__  
 > * You use __simple array__ if its dense and __binary heap__ if its sparse.
