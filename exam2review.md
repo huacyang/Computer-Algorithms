@@ -307,8 +307,6 @@
 
 > In a directed graph _G_ that may not itself be strongly connected, a pair of vertices _u_ and _v_ are said to be __strongly connected__ to each other if there is a path in each direction between them.
 
-## Breadth-First Search
-
 #### Provide the algorithm that performs breadth-ﬁrst search on a graph. What is the inductive argument for the correctness of the approach? What is the running time of the algorithm?
 
 > __Psudocode.__  
@@ -364,38 +362,169 @@
 
 ## Dijkstra's Algorithm
 
-#### Provide the algorithm that performs breadth-ﬁrst search on a graph. What is the inductive argument for the correctness of the approach? What is the running time of the algorithm?
+#### Provide Dijkstra's algorithm for computing single-source shortest paths. What is the requirement in order to be able to apply Dijkstra's algorithm?
 
-#### What is the deﬁnition of a single-source shortest path problem? What is the deﬁnition of a single-destination shortest path problem? What is the deﬁnition of a single-pair shortest path problem? What is the deﬁnition of all-pairs shortest path problem? Which of these problems are equivalent? Do we know faster algorithms for the single-pair shortest path problem than the single-source shortest path problem?
+> __Psudocode.__  
+> ```c
+> // Input: Graph G=(V,E), directed or undirected;
+> // 		positive edge lengths {le : e element of E}; vertex s element of V
+> // Output: For all vertices u reachable from s, dist(u) is set to the distance from s to u.
+> //		to the distance from s to u
+>
+> procedure dijkstra(G,l,s)
+>	for all u element of V:
+> 		dist(u) = infinity
+>		prev(u) = nil
+> 	dist(s) = 0
+>
+> 	H = makequeue(V) // using dist-values as keys
+> 	while H is not empty:
+>		u = deletemin(H)
+>		for all edges (u,v) element of E:
+>			if dist(v) > dist(u) + l(u,v):
+>				dist(v) = dist(u) + l(u,v)
+>				prev(v) = u
+>				decreasekey(H,v)
+> ```
 
-#### What is the “optimal substructure” property of shortest paths? Prove its validity.
+> __Run-time.__  
+> A binary heap gives an overall running time of __O((|v| + |e|) log|v|)__.
 
-#### What happens with shortest paths on graphs that contain negative cycles? Can a shortest path contain positive cycles?
+> __Dijstra's__ requires that there be edge weights and that a priority queue is used.
+
+#### You may be provided an example graph and asked to return the search tree that arises from Dijkstra, as well as the state of the priority queue during its iteration of the algorithm.
+
+> __Creating the search Tree.__  
+> * Start off by adding the root or the start node into the table or tree
+> * Then look at its outgoing edges and their weight, add the corresponding weights to the table
+> * Then move on and look at the smallest current weight in the table not yet explored
+> * Do the same thing except now overwrite all distances currently in the table with ones from the current node if the current node provides a cheaper path, and add in new nodes not yet seen
+> * Once all explored show the search tree which is just the graph with the shortest paths
+
+#### Prove the correctness of Dijkstra's algorithm on non-negative weight graphs.
+
+> Pikachu!
+
+#### What is the best running time of Dijkstra's algorithm and for what implementation of the priority queue data structure?
+
+> * The best running time for the algorithm is __O(e + vlog(v))__, where _e_ are the edges in the graph and _v_ are the verticies in the graph.  
+> * This running time is acheived using the fibonacci heap.  
+> * However this is very complicated to implement and many times d-ary is more preferable with a __O(v * d + e * log(v)/log(d))__
+
+#### What is the running time of Dijstra's algorithm if the priority queue is implemented as a single array? What is the running time of Dijkstra's algorithm if the priority queue is implemented as a binary heap? When is each of these implementations preferred over the other?
+
+> __Run-time.__  
+> * Simple Array: __O(v<sup>2</sup>)__
+> * Binary Heap: __O((v + e) * log(v))__
+
+> Single array is preferable if _e_ is close to _v<sup>2</sup>_, otherwise binary heap is preferable if _e &lt; v<sup>2</sup>/log(v)_.
 
 ## Bellman-Ford and Floyd-Warshall Algorithm
 
-#### Provide the algorithm that performs breadth-ﬁrst search on a graph. What is the inductive argument for the correctness of the approach? What is the running time of the algorithm?
+#### Provide the Bellman-Ford algorithm for computing single-source paths. What is the running time of the apprach and why?
 
-#### What is the deﬁnition of a single-source shortest path problem? What is the deﬁnition of a single-destination shortest path problem? What is the deﬁnition of a single-pair shortest path problem? What is the deﬁnition of all-pairs shortest path problem? Which of these problems are equivalent? Do we know faster algorithms for the single-pair shortest path problem than the single-source shortest path problem?
+> __Psudocode.__  
+> ```c
+> // Input: Directed graph G=(V,E):
+> 			edge lengths {le : e element of E} with no negative cycles;
+> // Output: For all vertices u reachable from s, dist(u) is set to the distance from s to u.
+>
+> procedure shortest-paths(G,l,s)
+> 	for all u element of V:
+>		dist(u) = infinity
+>		prev(u) = nil
+>
+> 	dist(s) = 0
+>	repeat |V| - 1 times:
+>		for all e element of E:
+>			update(e)
+> ```
 
-#### What is the “optimal substructure” property of shortest paths? Prove its validity.
+> __Run-time.__ The overall running time is __O(V * E)__.
 
-#### What happens with shortest paths on graphs that contain negative cycles? Can a shortest path contain positive cycles?
+> This is correct because it will update for each edge and not continue to loop if a negative cycle comes into play.
+
+#### You may be provided a graph and asked to trace the dynamic programming matrix that arises from the operation of Bellman-Ford.
+
+> [See Sample Problems.](exam_2_sample.md)
+
+#### What is an efﬁcient approach for computing single-source shortest paths on directed acyclic graphs that may contain negative weight edges and what is the running time of this solution?
+
+> __Psudocode.__  
+> ```c
+> // Input: DAG G = (V,E);
+>			edge lengths {le : element of E}; vertex s element of V
+> // Output: For all vertices u reachable from s, dist(u) is set to the distance from s to u.
+>
+> procedure dag-shortest-paths(G,l,s)
+>	for all u element of V:
+>		dist(u) = infinity
+>		prev(u) = nil
+>
+>	dist(s) = 0
+>	Linearize G
+>	for each u element V, in linearized order:
+>		for all edges (u,v) element of E:
+>			update(u,v)
+> ```
+
+> __Run-time.__ The overall running time is __O(V + E)__.
+
+#### Why is the Floyd-Warshall algorithm preferred over calling V times the Bellman-Ford algorithm on a graph to solve all-pair shortest path problems?
+
+> If we called V times the Bellman Ford algo on a graph to solve this we have the runtime of __O(v<sup>2</sup>e)__ instead of the quicker __O(v<sup>3</sup>)__ Floyd-Warshall.
+
+#### What is the dynamic programming formulation of Floyd-Warshall, i.e., what are the subproblems deﬁned by the algorithm and how are they combined in order to address more complex problems?
+
+> Look for a direct connection between node v and u.
+> If one does not exist expand your intermediate set to include more nodes until a connection is found.
+> Each time we expand we must again rexamine all the pairs to look for an already discovered intermediate shortest path
+> This is easy because shortest from i to j using k and possibly others only uses k once assuming no cycles.
+> Additionally we already know the distance from i to k and k to j from previously
 
 ## Floyd-Warshall and Johnson's Algorithm
 
 #### Provide the Floyd-Warshall algorithm for solving all-pair shortest path problems. What is the running time of the approach?
 
+> __Psudocode.__  
+> ```c
+> for i = 1 to n:
+>	for j = 1 to n:
+>		dist(i,j,0) = infinity
+> for all (i,j) element of E:
+>	dist(i,j,0) = l(i,j)
+> for k = 1 to n:
+> 	for i = 1 to n:
+> 		for j = 1 to n:
+> 			dist(i,j,k) = min{dist(i,k,k-1) + dist(k,j,k-1), dist(i,j,k-1)}
+> ```
+
+> __Run-time.__ The overall running time is __O(V<sup>3</sup>).
+
 #### You may be provided a graph and asked to compute the dynamic programming matrix that arises from a few iterations of the Floyd-Warshall algorithm.
+
+> [See Sample Problems.](exam_2_sample.md)
 
 #### What is the transitive closure of a graph and how can it be computed following a dynamic programming approach? What is the relation to the Floyd-Warshall algorithm?
 
+> Pikachu!
+
 #### If a graph has non-negative edges, is it preferable to run the Floyd-Warshall algorithm to solve an all-pair shortest path problem or is it preferable to call |V| times Dijkstra’s algorithm?
+
+> Pikachu!
 
 #### What is the main idea in Johnson’s algorithm and why can it be preferable over the Floyd-Warshall algorithm when solving all-pair shortest path problems?
 
+> Pikachu!
+
 #### Prove the following: if we define a value h : V --> R for every vertex of a graph G(V,E) and update the weight w of a graph according to the rule: &#373;(u,v) = w(u,v) + h(u) - h(v) for every edge (u,v) &isin; E, then a path p = \< u<sub>0</sub>, v<sub>1</sub>, . . ., v<sub>k</sub> \> is a shortest path on G according to weight &#373; only if it is also a shortest path according to weights w. Futhermore, a negative cycles exist on the graph G according to the weight &#373; only if they exist for the weights w as well.
+
+> Pikachu!
 
 #### Given the above transformation of weights for a graph G(V, E), how should the values h be computed for the vertices of the graph so that all weights end up having non-negative values?
 
+> Pikachu!
+
 #### Describe Johnson’s algorithmic steps. What is its running time?
+
+> Pikachu!
