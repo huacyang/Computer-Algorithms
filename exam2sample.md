@@ -74,8 +74,62 @@
 
 ![depth-first search graph](img/breath-first-search-graph.png)
 
+> Nodes | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+> --- | --- | --- | --- | --- | --- | --- | --- | ---
+> Pre-vist | 1 | 2 | 3 | 4 | 5 | 10 | 6 | 11
+> Post-visit | 16 | 15 | 14 | 9 | 8 | 13 | 7 | 12
 
+#### What is the definition of a strongly connected component?
 
+> A dircted graph is called strongly connected if there is a path in each direction between each pair of verticies of the graph.
 
+#### Provide the efficient algorithm for computing the decomposition of a directed graph into its strongly connected components.
 
+> Given graph G:
+
+> 1. We need to do this in order to run DFS and organize the nodes in a post-order increasing order.
+> 2. We have a property that says that the nodes with the highest post order is the source and the lowest post order are sinks, in other words they reverse G to get the sinks of the graph.
+> 3. Run the connected component alog of undirected graphs to find the connected components.
+> 4. Since they are now organized according to the post order , I now have the sets of Strongly Connected Components thanks to algo in part two.
+
+#### What is the running time of the efficient algorithm and why?
+
+> __O(n)__
+
+#### Consider the graph shown below. Describe an efficient approach for computing single-source shortest paths on this graph. What is the running time of the efficient solution?
+
+![single-source shortest paths](img/single-source-shortest-paths.png)
+
+#### Consider a directed graph with (possibly negative) weighted edges, in which the shortest path between any two vertices is guaranteed to have at most _k_ edges. Write an algorithm in pseudocode that finds the shortest path between two vertices _u_ and _v_ in _O(k|E|) times.
+
+> ```c
+> procedure dag-shortest-paths(G,l,s)
+>  for all u element of V:
+>      dist(u) = infinity
+>      prev(u) = nil
+>
+>  dist(s) = 0
+>  Linearize G
+>  for each u element V, in linearized order:
+>      for all edges (u,v) element of E:
+>          update(u,v)
+> ```
+
+> The overall running time is __O(V + E)__.
+
+#### Consider a directed graph with (possibly negative) weighted edges, in which the shortest path between any two vertices is guaranteed to have at most _k_ edges. Write an algorithm in pseudocode that finds that shortest path between two vertices _u_ and _v_ in O(k|E|) time.
+
+> ```c
+> procedure shortest-paths(G,l,s)
+>  for all u element of k:
+>      dist(u) = infinity
+>      prev(u) = nil
+>
+>  dist(s) = 0
+>  repeat |k| - 1 times:
+>      for all e element of E:
+>          update(e)
+> ```
+
+> The overall running time is __O(k|E|)__.
 

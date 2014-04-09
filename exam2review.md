@@ -426,7 +426,7 @@
 > __Psudocode.__  
 > ```c
 > // Input: Directed graph G=(V,E):
-> 			edge lengths {le : e element of E} with no negative cycles;
+> //		edge lengths {le : e element of E} with no negative cycles;
 > // Output: For all vertices u reachable from s, dist(u) is set to the distance from s to u.
 >
 > procedure shortest-paths(G,l,s)
@@ -453,7 +453,7 @@
 > __Psudocode.__  
 > ```c
 > // Input: DAG G = (V,E);
->			edge lengths {le : element of E}; vertex s element of V
+> //		edge lengths {le : element of E}; vertex s element of V
 > // Output: For all vertices u reachable from s, dist(u) is set to the distance from s to u.
 >
 > procedure dag-shortest-paths(G,l,s)
