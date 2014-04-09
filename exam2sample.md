@@ -1,6 +1,13 @@
 #### An adjacency matrix representation can quickly detect if an edge exists but the representation requires _O(|V|<sup>3</sup>)_ space (i.e. _O|V|<sup>2</sup>_) for each vertex). An adjacency list has smaller space requirements [_O(V * log|V|)_ in general] but detecting edge existence is not constant time.
 
+> __False.__  
+> * An adjacency matrix can quickly detect if an edge exists but the space requirement is __O(|V|<sup>2</sup>)__.
+> * An adjacency list has smaller space requirements __O(|V| + |E|)__ but we need to find the edge and that operation is not constant time anymore.
+
 #### Consider a general graph G(V,E). The best known algorithm for finding a path from a specific vertex _s_ to a specific vertex _t_ in _G_ has better asymptotic running time (i.e. is faster) than the best known algorithm for finding the paths from all the vertices in _V_ to a vertex _t_ in _G_.
+
+> __False.__  
+> Finding all possible paths from all vertices from _V_ to all other vertices has the same complexity as finding the shortest path from a specific vertex _s_ to a specific vertex _t_.
 
 #### A shortest path cannot possibly contain a zero-weight cycle.
 
