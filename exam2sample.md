@@ -140,3 +140,10 @@
 * Moreover, negative cycles exist on the graph _G_ according to weights &#373; only if they exist for the weights _w_ as well.
 
 > Pikachu!
+
+* Algorithm
+
+> * The algorithm constructs the augmented graph G&#39;.
+> * Uses Bellman-Ford from _s_ to check whether there are negative weight cycles.
+> * Performs weight adjustment with _h_.
+> * Runs Dikjstra's algorithm from each start vertex, reversing the weight adjustment to obtain the final distances
