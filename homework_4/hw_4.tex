@@ -202,7 +202,11 @@ algorithm.\\
 \textbf{ Answer }
 \vspace{0.1in}
 \begin{adjustwidth}{1.8em}{0pt}
-IDK
+We solve the problem by treating the $n x n$ matrix as a graph $G = (V,E)$ with $V = {n1,...,nn}$ chemicals and edges $e_{ij} = R_{ij}$ (or $R_{ji}$). We can then run Bellman-Ford algorithm with input of chemical A and chemical D and return the shortest path from A to D. Now we must show that the shortest path returned is in fact the best sequence of reactions to produce the most chemical D given an amount of A. Let Pst  be the set of paths from A to D in G and our algorithm returns:
+\begin{itemize}
+\item $min_{p~in~Pst} \sum_{(i,j)~in~p}  R_{ij} = max_{p~in~Pst}  \sum_{(i,j)~in~p~Rij}$
+\end{itemize}
+Which would conclude that the shortest path is equivalent to the path with the best sequence of reactions. The running time for the Bellman-Ford would be $O(|V||E|)$ and it would be run p times where p is the number of paths from chemical A to chemical D in G. Total running time would be $O(p*|V|*|E|)$.
 \end{adjustwidth}
 
 \vspace{0.1in}
