@@ -2,7 +2,7 @@
 
 #### What kind of graph-based optimization problems require as a solution the computation of a Minimum Spanning Tree? Why the solution to such problems does not contain cycles?
 
-> __Usage.__ The cheapest path that would cover all the nodes. __
+> __Usage.__ The cheapest path that would cover all the nodes.
 
 > In the Generic-MST method on a connected graph `G = (V,E)`, the set _A_ is always acyclic. Otherwise, a minimum spanning tree including _A_ would contain a cycle, which is a _contradiction_. The MST can only go through each node once!
 
@@ -49,10 +49,10 @@ Generic_MST(G,w)
 > * Adding `(u,v)` reconnects them to form a new spanning tree __T' = T - {(x,y)} &cup; {(u,v)}__
 > * We show that _T'_ is a minimum spanning tree. Since `(u,v)` is a light edge crossing `(S,V-S)` and `(x,y)` also crosses this cut `w(u,v) <= w(x,y)`.
 
-> ```java
-> w(T prime) = w(T) - w(x,y) + w(u,v)
->           <= w(T)
-> ```
+```java
+w(T prime) = w(T) - w(x,y) + w(u,v)
+          <= w(T)
+```
 
 > * Since T is a MST, so that `w(T) <= w(T')`, _T'_ must be a MST as well.
 
@@ -79,8 +79,8 @@ Generic_MST(G,w)
 #### Provide Kruskal’s algorithm.
 
 ```java
-MST-KRUSKAL.G; w/
-1  A = empty set ;
+MST-KRUSKAL(G, w)
+1  A = empty set;
 2  for each vertex element of G,V
 3    MAKE-SET(v)
 4  sort the edges of G,E into nondecreasing order by weight w
@@ -91,11 +91,13 @@ MST-KRUSKAL.G; w/
 9  return A
 ```
 
-> * Lines 1–3 initialize the set _A_ to the empty set and create _|V|_ trees, one containing each vertex.
-> * The for loop in lines 5–8 examines edges in order of weight, from lowest to highest.
+> * Lines 1–3 initialize the set _A_ to the empty set and create _|V|_ trees, one containing each vertex. Runtime is __O(|V|)__.
+> * Line 4 sort the edges in an increasing order. Runtime is __O(E log E)__.
+> * The for loop in lines 5–8 examines edges in order of weight, from lowest to highest. Runtime is __O(E)__ FIND-SET and UNION operations.
 > * The loop checks, for each edge `(u,v)`, whether the endpoints _u_ and _v_ belong to the same tree.
 > * If they do, then the edge `(u,v)` cannot be added to the forest without creating a cycle, and the edge is discarded. Otherwise, the two vertices belong to different trees.
 > * In this case, line 7 adds the edge `(u,v)` to _A_, and line 8 merges the vertices in the two trees.
+> * The overall runtime is __O(E log V)__.
 
 #### Consider an implementation of the disjoint sets data structure with the union-by-rank heuristic as part of the implementation of Kruskal’s algorithm. What is the running time of Kruskal’s algorithm in this case and why? Consider an implementation of the disjoint sets data structure with the union-by-rank and the path compression heuristic. Furthermore, consider that the edge weights are upper bounded by the value |E|.  What is the running time of Kruskal’s algorithm in this case and why?
 
@@ -107,7 +109,7 @@ MST-KRUSKAL.G; w/
 
 > __Union-by-rank + path compression heuristic.__
 
-> * Assuming that _G_ is connected, _|E| &ge; |V| - 1_, so the disjoint-set operations take _O(E &alpha;(V))_ time.
+> * Assuming that _G_ is connected, where _|E| &ge; |V| - 1_, then the disjoint-set operations take _O(E &alpha;(V))_ time.
 
 > * Since _&alpha;(|V|) = O(log V) = O(log E)_, the total runtime of Kruskal’s algorithm is _O(E log E)_.
 
@@ -117,9 +119,26 @@ MST-KRUSKAL.G; w/
 
 > A __makeset()__ operation simply creates a tree with just one node.
 
-> We perform a __find_set()__ operation by following parent pointers until we ﬁnd the root of the tree. The nodes visited on this simple path toward the root constitute the ﬁnd path.
+> * The runtime is __O(1)__, but will be called V times.
 
 ```java
+MAKE-SET(x)
+1 x.p = x
+2 x.rank = 0
+```
+
+> We perform a __find_set()__ operation by following parent pointers until we ﬁnd the root of the tree. The nodes visited on this simple path toward the root constitute the ﬁnd path.
+
+> * Without Path Compression, the runtime is __O(log V)__.
+> * With Path Compression, the runtime is __O(1)__.
+
+```java
+// without Path Compression
+FIND-SET(x)
+1  while x != x.p
+2    x = x.p
+3  return x
+
 // with Path Compression
 FIND-SET(x)
 1  if x != x.p
@@ -129,9 +148,47 @@ FIND-SET(x)
 
 > A __union()__ operation causes the root of one tree to point to the root of the other.
 
+> * With Union-by-Rank, the runtime is __O(log V)__.
+
+```java
+// with Union-by-Rank
+UNION(x,y)
+1  x = FIND-SET(x)
+2  y = FIND-SET(y)
+3  if x.rank > y.rank
+4    y.p = x
+5  else x.p = y
+6    if x.rank == y.rank
+7      y.rank = y.rank + 1
+```
+
 #### Provide Prim’s algorithm.
 
+```java
+MST-PRIM(G, w, r)
+1  for each u element of G,V
+2    u.key = infinity
+3    u.pie = NIL
+4  r.key = 0
+5  Q = G.V
+6  while Q != 0
+7    u = EXTRACT-MIN(Q)
+8    for each v element of G.Adj[u]
+9      if v element of Q and w(u,v) < v.key
+10       v.pie = u
+11       v.key = w(u,v)
+```
+
 #### What is the running time of Prim’s algorithm given an array implementation of a priority queue? What is the running time of the algorithm given a binary heap implementation of a priority queue?
+
+> __Binary Heap.__
+
+> * We can use the BUILD-MIN-HEAP procedure to perform lines 1-5 in __O(V)__ times.
+> * The body of the while loop executes _|V|_ times, and since each EXTRACT-MIN operations takes _O(log V)_ time, the total time for all calls to EXTRACT-MIN is __O(V log V)__.
+> * The for loop in lines 8-11 executes __O(E)__ times altogether, since the sum of the lengths of all adjacency lists is _2|E|_.
+> * Within the for loop, we can implement the test for membership in Q in line 9 in constant time by keeping a bit for each vertex that tells whether or not it is in Q, and updating the bit when the vertex is removed from Q.
+> * The assignment in line 11 involves an implicit DECREASE-KEY operation on the min-heap, which a binary min-heap supports in __O(log V)__ time.
+> * The total time for Prim's algorithm is _O(V log V + E log V)_ = __O(E log V)__.
 
 ## The class of NP problems - Examples of NP complete problems
 
