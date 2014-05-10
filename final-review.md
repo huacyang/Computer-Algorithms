@@ -194,15 +194,68 @@ MST-PRIM(G, w, r)
 
 #### What is the satisfiability problem? What is the worst-case running time of the best known algorithm for this problem? What is the running time of checking whether a candidate solution is truly solving the problem or not?
 
+> The satisfiability problem is a __Boolean formula in Conjunctive Normal Form__ (_CNF_). It is a collection of _clauses_ (the parentheses), each consisting of the disjunction (logical _or_, denoted as &or;) of several literals.
+
+> __The SAT Problem.__ Given a Boolean formula in _CNF_, either find a satisfying truth assignment or else report that none exists.
+
+> * A __literal__ is either a Boolean variable (such as _x_) or the negation of one (such as _&not;x_).
+> * A __satisfying truth assignment__ is an assignment of _false_ or _true_ to each variable so that every clause contains a literal whose value is _true_.
+
+> The worst-case running time is __exponential__.
+
+> The running time of checking whether a candidate solution is truly solving the problem or not is __polynomial__.
+
 #### Are there versions of the general satisfiability problem that can be solved in polynomial time? Describe two of them.
+
+> __Horn formula.__ If all clauses contain at most one positive literal, and can be satisfied by the Greedy algorithm.
+
+> __2SAT__ contains two literals, and can be solved by finding the strongly connected components of a particular graph.
 
 #### What is the traveling salesman problem? What is a dynamic programming approach for the traveling salesman approach? What is the running time of this approach?
 
+> The __Traveling Salesman Problem__ is a _search problem_: find a _tour_, a cycle that passes through every vertex exactly once, within the given budget&#8212;or to report that no such tour exists.
+
+> __Dynamic programming approach.__
+
+> * __Subproblem__:
+>   - For a subset of cities _S &sube; {1,2,...,n}_ that includes _1_, and _j &isin; S_, let _C(S,j)_ be the length of the shortest path visiting each node in _S_ exactly once, starting at _1_ and ending at _j_.
+> * __Code__
+
+```java
+1  C({1},1) = 0
+2  for s = 2 to n:
+3    for all subsets S subset of {1,2,...,n} of size s and containing 1:
+4      C(S,1) = infinity
+5      for all j element of S, j != 1
+6        C(S,j) = min{C(S - {j},i) + d of ij : i element of S, i != j}
+7  return min of j C({1,...,n},j) + d of j1
+```
+
+> * There are at most 2<sup>n</sup> &times; n subproblems, and each one takes linear time to solve. The total running time is therefore __O(n<sup>2</sup>2<sup>n</sup>)__.
+
 #### Show that any optimization problem can be reduced to a search problem. Show that any search problem can be reduced to an optimization problem. Why do we typically prefer to work with search problems when studying the computational complexity of algorithms?
+
+> __Optimization Problem__ &rarr; __Search Problem__
+
+> * Any algorithm that solves the optimization _TSP_ also readily solves the search problem: find the optimum tour and if it is within budget, return it; if not, there is no solution.
+
+> __Search Problem__ &rarr; __Optimization Problem__
+
+> * Suppose that we somehow knew the _cost_ of the optimum tour; then we could find this tour by calling the algorithm for the search problem, using the optimum cost as the budget. We then find the optimum cost by __binary search!__
 
 #### What is an Eulerian tour? When does a graph have an Eulerian tour?
 
+> A __Euler tour__ of a connected, directed graph `G = (V,E)` is a cycle that traverses each _edge_ of _G_ exactly once, although it is allowed to visit each vertex more than once.
+
+> __Condition.__ If and only if (a) the graph is connected and (b) every vertex, with the possible exception of two vertices (the start and final vertices of the walk), has even degree.
+
 #### What is the Rudrata cycle/path problem? Is there a polynomial time algorithm for this problem?
+
+> __Rudrata Cycle.__ Given a graph, find a _cycle_ that visits each vertex exactly once&#8212;or report that no such cycle exists.
+
+> __Rudrata Path.__ Is just like the Rudrata Cycle, except the goal is now to find a _path_ rather than a _cycle_.
+
+> There are no polynomial time algorithm for this problem. The Rudrata cycle is very similar to the _TSP_.
 
 #### What is the independent set problem? Describe a dynamic programming solution for computing an independent set on trees. What is the running time of this solution? Is there a polynomial time algorithm for this problem on general graphs?
 
