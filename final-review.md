@@ -49,10 +49,7 @@ Generic_MST(G,w)
 > * Adding `(u,v)` reconnects them to form a new spanning tree __T' = T - {(x,y)} &cup; {(u,v)}__
 > * We show that _T'_ is a minimum spanning tree. Since `(u,v)` is a light edge crossing `(S,V-S)` and `(x,y)` also crosses this cut `w(u,v) <= w(x,y)`.
 
-```java
-w(T prime) = w(T) - w(x,y) + w(u,v)
-          <= w(T)
-```
+> ![Light edge weight proof](img/light-edge-weight.png)
 
 > * Since T is a MST, so that `w(T) <= w(T')`, _T'_ must be a MST as well.
 
@@ -64,7 +61,7 @@ w(T prime) = w(T) - w(x,y) + w(u,v)
 
 > __Proof.__
 
-> The cut _(V<sub>C</sub>,V-V<sub>C</sub>)_ respects _A_, and `(u,v)` is a light edge for this cut. Therefore, `(u,v)` is safe for _A_.
+> The cut _(V<sub>C</sub>,V-<sub>C</sub>)_ respects _A_, and `(u,v)` is a light edge for this cut. Therefore, `(u,v)` is safe for _A_.
 
 ## Kruskal’s and Prim’s algorithms
 
@@ -309,11 +306,7 @@ MST-PRIM(G, w, r)
 > * Thus, with probability at least 1 - 2/k = (k - 2)/k, the choice leaves the minimum cut intact.
 > * But now the chance that Kruskal's algorithm leaves the minimum cut intact all the way up to the choice of the last spanning tree edge is at least:
 
-```java
-n-2   n-3   n-4          2     1      1
---- * --- * --- * ... * --- * --- = ------
- n    n-1   n-2          4     2    n(n-1)
-```
+> ![Percent change calculation of Krushkal's with MST](img/kruskal-with-mst.png)
 
 > The final runtime is __O(n<sup>2</sup> log n)__.
 
@@ -373,13 +366,58 @@ n-2   n-3   n-4          2     1      1
 
 #### Show that the general satisfiability (SAT) problem reduces to the 3-SAT problem.
 
+> __SAT problem__ &rarr; __3-SAT problem__
+
+> * Given an instance _I_ of SAT, use exactly the same instance for 3-SAT, except that any clause with more than three literals,
+>   - __(a<sub>1</sub> &or; a<sub>2</sub> &or; ... &or; a<sub>k</sub>)__
+> * Is replaced by a set of clauses,
+>   - __(a<sub>1</sub> &or; a<sub>2</sub> &or; y<sub>1</sub>)(&not;y<sub>1</sub> &or; a<sub>3</sub> &or; y<sub>2</sub>)(&not;y<sub>2</sub> &or; a<sub>4</sub> &or; y<sub>3</sub>) ... (&not;y<sub>k-3</sub> &or; a<sub>k-1</sub> &or; a<sub>k</sub>)__
+> * Where the _y<sub>i</sub>_'s are new variables.
+> * Call the resulting 3-SAT instance _I'_, the conversion from _I_ to _I'_ is clearly polynomial time.
+> * _I'_ is equivalent to _I_ in terms of satisfiability, because for any assignment to the _a<sub>i</sub>_'s,
+
+> ![SAT to 3-SAT](img/sat-to-3-sat.png)
+
+> * Suppose that the clauses on the right are all satisfied.
+> * Then at least one of the literals _a<sub>1</sub>,...,a<sub>k</sub>_ must be true&#8212;otherwise _y<sub>1</sub>_ would have to be true, which would in turn force _y<sub>2</sub>_ to be true, and so on, eventually falsifying the last clause.
+> * But this means _(a<sub>1</sub> &or; a<sub>2</sub> &or; ... &or; a<sub>k</sub>)_ is also satisfied.
+
 #### Show that the 3-SAT problem reduces to the Independent Set problem.
 
-#### Show that the Independent Set problem reduces to the Vertex cover problem.
+> __3-SAT__ &rarr; __Independent Set__
+
+> * Given an independent set _S_ of _g_ vertices in _G_, it is possible to efficiently recover a satisfying truth assignment to _I_.
+> * If graph _G_ has no independent set of size _g_, then the Boolean formula _I_ is unsatisfiable.
+> * Pikachu!
+
+#### Show that the Independent Set problem reduces to the Vertex Cover problem.
+
+> __Independent Set problem__ &rarr; __Vertex Cover problem__
+
+> * Notice that a set of nodes _S_ is a vertex cover of graph `G = (V,E)` if and only if the remaining nodes, `V - S`, are an independent set of _G_.
+> * Therefore, to solve an instance `(G,g)` of Independent Set, simply look for a vertex cover of _G_ with `|V| - g` nodes.
+> * If such a vertex cover exists, then take all nodes _not_ in it.
+> * If no such vertex cover exists, then _G_ cannot possibly have an independent set of size _g_.
 
 #### Show that the Independent Set problem reduces to the Clique problem.
 
+> __Independent Set problem__ &rarr; __Clique problem__
+
+> * Define the _complement_ of a graph `G = (V,E)` to be __&not;G = (V,&not;E)__, where _&not;E_ contains precisely those unordered pairs of vertices that are not in _E_.
+> * Then a set of nodes _S_ is an independent set of _G_ if and only if _S_ is a clique of _&not;G_.
+>   - Paraphrase: these nodes hav eno edges between them in _G_ if and only if they have all possible edges between them in _&not;G_.
+> * Therefore, we can reduce independent set to clique by mapping an instance _(G,g)_ of independent set to the corresponding instance _(&not;G,g)_ of clique; the solution to both is identical.
+
 #### Show that the Circuit SAT problem reduces to the SAT problem. What is the importance of this reduction?
+
+> __Circuit SAT problem__ &rarr; __SAT problem__
+
+> * For each gate _g_ in the circuit we create a variable _g_, and we model the effect of the gate using a few clauses:
+
+> ![Circuit SAT to SAT](img/circuit-sat-to-sat.png)
+
+> * If _g_ is the output gate, we force it to be __true__ by adding the clause (g).
+> * The resulting instance of SAT is equivalent to the given instance of Circuit SAT: the satisfying truth assignments of this conjunctive normal form are in one-to-one correspondence with those of the circuit.
 
 ## Intelligent Exhaustive Search, Intro to Approximation Algorithms
 
