@@ -243,6 +243,132 @@ MST-PRIM(G, w, r)
 
 > * Suppose that we somehow knew the _cost_ of the optimum tour; then we could find this tour by calling the algorithm for the search problem, using the optimum cost as the budget. We then find the optimum cost by __binary search!__
 
+#### What is an Eulerian tour? When does a graph have an Eulerian tour?
+
+> A __Euler tour__ of a connected, directed graph `G = (V,E)` is a cycle that traverses each _edge_ of _G_ exactly once, although it is allowed to visit each vertex more than once.
+
+> __Condition.__ If and only if (a) the graph is connected and (b) every vertex, with the possible exception of two vertices (the start and final vertices of the walk), has even degree.
+
+#### What is the Rudrata cycle/path problem? Is there a polynomial time algorithm for this problem?
+
+> __Rudrata Cycle.__ Given a graph, find a _cycle_ that visits each vertex exactly once&#8212;or report that no such cycle exists.
+
+> __Rudrata Path.__ Is just like the Rudrata Cycle, except the goal is now to find a _path_ rather than a _cycle_.
+
+> There are no polynomial time algorithm for this problem. The Rudrata cycle is very similar to the _TSP_.
+
+#### What is the independent set problem? Describe a dynamic programming solution for computing an independent set on trees. What is the running time of this solution? Is there a polynomial time algorithm for this problem on general graphs?
+
+> A subset of nodes _S &sub; V_ is an independent set of graph `G = (V,E)` if there are no edges between them.
+
+> The __independent-set problem__ is to find a maximum-size independent set in _G_.
+
+> When the graph happens to be a tree, the problem can be solved in linear time, __O(|V| + |E|)__ using dynamic programming.
+
+> __Dynamic Programming__
+
+> * Start by rooting the tree at any node _r_. Now, each node defines a subtree&#8212;the one hanging from it.
+> * _I(u)_ = size of largest independent set of subtree hanging from _u_.
+> * Final goal is _I(r)_.
+
+
+#### What is the vertex cover problem? What is the clique problem? Are there polynomial time algorithms for these problems?
+
+> A __vertex cover__ of an undirected graph `g = (V,E)` is a subset _V &sube; V_ such that if _(u,v) &isin; E_, then _u &isin; V'_ and/or _v &isin; V'_. A vertex cover for _G_ is a set of vertices that covers all the edges in _E_.
+
+> The __vertex-cover problem__ is to find a vertex cover of minimum size in a given graph. Restating this optimization problem as a decision problem, we wish to determine whether a graph has a vertex cover of a given size _k_.
+
+> The vertex-cover problem is a NP complete problem. A polynomial-time __approximation algorithm__ can obtain near-optimal solutions to the vertex-cover problem.
+
+> A __clique__ of an undirected graph `G = (V,E)` is a subset _V' &sube; V_ of vertices, each pair of which is connected by an edge in _E_. In other words, a clique is a complete subgraph of _G_.
+
+> The __clique problem__ is the optimization problem of finding a clique of maximum size in a graph. As a decision problem, we ask simply whether a clique of a given size _k_ exists in the graph.
+
+> There isn't a polynomial-time algorithm for clique, because it is NP-hard.
+
+## Additional examples of NP complete problems - Reductions
+
+#### What is the minimum cut problem? Is there a polynomial time algorithm for this problem?
+
+> A __cut__ is a set of edges whose removal leaves a graph disconnected. It is often of interest to find small cuts.
+
+> The __minimum cut problem__ is, given a graph and a budget _b_, to find a cut with at most _b_ edges.
+
+> This problem can be solved in polynomial time by __n - 1 max-flow computations__.
+
+> * Give each edge a capacity of 1, and find the maximum flow between some fixed node and every single other node.
+> * The smallest such flow will correspond (via the max-flow min-cut theorem) to the smallest cut.
+
+#### Consider the following approach for computing a minimum cut: run Kruskal’s algorithm on an unweighted graph and remove the last edge of the resulting minimum spanning tree to define a cut (randomize the selection of the edges among multiple equivalent choices). Show that the probability of this cut being the minimum cut is at least 1/n<sup>2</sup>. What is the running time n of the randomized approach that computes the minimum cut with high probability through Kruskal’s algorithm?
+
+> Proof of 1/n<sup>2</sup> probability:
+
+> * The number of edges incident to each component must be at least _C_, the size of the minimum cut in _G_.
+> * So if there are _k_ components in the graph, the number of eligible edges is at least _kC/2_
+>   - each of the _k_ components has at least C edges leading out of it, and we need to compensate for the double-counting of each edge.
+> * Since the edges were randomly ordered, the chance that the next eligible edge in the list is from the minimum cut is at most C/(kC/2) = 2/k.
+> * Thus, with probability at least 1 - 2/k = (k - 2)/k, the choice leaves the minimum cut intact.
+> * But now the chance that Kruskal's algorithm leaves the minimum cut intact all the way up to the choice of the last spanning tree edge is at least:
+
+```java
+n-2   n-3   n-4          2     1      1
+--- * --- * --- * ... * --- * --- = ------
+ n    n-1   n-2          4     2    n(n-1)
+```
+
+> The final runtime is __O(n<sup>2</sup> log n)__.
+
+#### What is the balanced cut problem? Is there a polynomial time algorithm for this problem?
+
+> __Balanced cut problem.__ Given a graph with n vertices and a budget _b_, partition the vertices into two sets _S_ and _T_ such that __|S|,|T| &ge; n/3__ and such that there are at most _b_ edges between _S_ and _T_.
+
+> Since the balanced cut problem is a __NP-hard__ problem, there is no polynomial time algorithm for this problem.
+
+#### What is the knapsack problem? Is there a polynomial time algorithm for this problem? What is the subset sum problem and how does it relate to the knapsack problem?
+
+> __Knapsack Problem.__ Given a weight capacity _W_ and a goal _g_, find a set of items whose total weight is at most _W_ and whose total value is at least _g_.
+
+> There is no polynomial time algorithm for this problem. The dynamic programming scheme for the Knapsack problem runs in __O(nW)__.
+
+> __Subset Sum Problem.__ Provided that an item's value is equal to its weight, and the goal _g_ is the same as the weight capacity _W_, find a subset of a given set of integers that adds up to exactly _W_.
+
+> The subset sum problem is a variant of the knapsack problem, except that the value of the item is directly porportional to its weight.
+
+#### What is the class of NP problems? What is the class of P problems? What is the relation between these two classes of problems? For instance, is P = NP?
+
+> We denote the class of all search problems by __NP__.
+
+> We denote the class of all search problems that can be solved in polynomial time by __P__.
+
+> The P versus NP problem is to determine whether every language accepted by some nondeterministic algorithm in polynomial time is also accepted by some (deterministic) algorithm in polynomial time.
+
+#### What does it mean that you can reduce a search problem A to a search problem B? What do you need to do in order to provide such a reduction? (you can provide a drawing to explain your answer)
+
+> A reduction from search problem A to search problem B is a polynomial-time algorithm _f_ that transforms any instance _I_ of _A_ into an instance f(I) of _B_, together with another polynomial-time algorithm _h_ that maps any solution _S_ of f(I) back into a solution h(S) of _I_
+
+> If we denote a reduction from A to B by __A &rarr; B__, then we can say that difficulty flows in the direction of the arrow, while efficient algorithms move in the opposite direction.
+
+#### What is the class of NP-complete problems? What is the class of NP-hard problems?
+
+> A search problem is __NP-complete__ if all other search problems reduce to it.
+
+> __NP-hard__ is a class of problems that are, informally, "at least as hard as the hardest problems in NP"
+
+#### When is a problem in the class of co-NP problems? Provide an example of a co-NP problem.
+
+> The __Complexity Class NP__ is a class of languages that can be verified by a polynomial-time algorithm.
+
+> A language _L_ belongs to NP if and only if there exist a two-input polynomial-time algorithm _A_ and a constant _c_ such that:
+
+> L = {x &isin; {0,1}* : there exists a certificate _y_ with _|y|_ = __O(|x|<sup>e</sup>)__, such that _A(x,y) = 1_}
+
+> We say that algorithm _A_ __verifies__ language _L_ __in polynomial time__.
+
+> __Example.__
+
+> * The hamiltonian-cycle problem (TSP) &isin; NP
+> * If _L_ &isin; P, then _L_ &isin; NP, since if there is a polynomial-time algorithm to decide _L_, the algorithm can be easily converted to a two-argument verification algorithm that simply ignores any certificate and accepts exactly those input strings it determines to be in _L_.
+> * Thus, P &sube; NP
 
 ## Examples of reductions between NP complete problems
 
