@@ -243,37 +243,6 @@ MST-PRIM(G, w, r)
 
 > * Suppose that we somehow knew the _cost_ of the optimum tour; then we could find this tour by calling the algorithm for the search problem, using the optimum cost as the budget. We then find the optimum cost by __binary search!__
 
-#### What is an Eulerian tour? When does a graph have an Eulerian tour?
-
-> A __Euler tour__ of a connected, directed graph `G = (V,E)` is a cycle that traverses each _edge_ of _G_ exactly once, although it is allowed to visit each vertex more than once.
-
-> __Condition.__ If and only if (a) the graph is connected and (b) every vertex, with the possible exception of two vertices (the start and final vertices of the walk), has even degree.
-
-#### What is the Rudrata cycle/path problem? Is there a polynomial time algorithm for this problem?
-
-> __Rudrata Cycle.__ Given a graph, find a _cycle_ that visits each vertex exactly once&#8212;or report that no such cycle exists.
-
-> __Rudrata Path.__ Is just like the Rudrata Cycle, except the goal is now to find a _path_ rather than a _cycle_.
-
-> There are no polynomial time algorithm for this problem. The Rudrata cycle is very similar to the _TSP_.
-
-#### What is the independent set problem? Describe a dynamic programming solution for computing an independent set on trees. What is the running time of this solution? Is there a polynomial time algorithm for this problem on general graphs?
-
-> A subset of nodes _S &sub; V_ is an independent set of graph `G = (V,E)` if there are no edges between them.
-
-> The __independent-set problem__ is to find a maximum-size independent set in _G_.
-
-> When the graph happens to be a tree, the problem can be solved in linear time, __O(|V| + |E|)__ using dynamic programming.
-
-> __Dynamic Programming__
-
-> * Start by rooting the tree at any node _r_. Now, each node defines a subtree&#8212;the one hanging from it.
-> * _I(u)_ = size of largest independent set of subtree hanging from _u_.
-> * Final goal is _I(r)_.
-
-
-#### What is the vertex cover problem? What is the clique problem? Are there polynomial time algorithms for these problems?
-
 
 ## Examples of reductions between NP complete problems
 
