@@ -317,7 +317,41 @@ n-2   n-3   n-4          2     1      1
 
 > The final runtime is __O(n<sup>2</sup> log n)__.
 
+#### What is the balanced cut problem? Is there a polynomial time algorithm for this problem?
 
+> __Balanced cut problem.__ Given a graph with n vertices and a budget _b_, partition the vertices into two sets _S_ and _T_ such that __|S|,|T| &ge; n/3__ and such that there are at most _b_ edges between _S_ and _T_.
+
+> Since the balanced cut problem is a __NP-hard__ problem, there is no polynomial time algorithm for this problem.
+
+#### What is the knapsack problem? Is there a polynomial time algorithm for this problem? What is the subset sum problem and how does it relate to the knapsack problem?
+
+> __Knapsack Problem.__ Given a weight capacity _W_ and a goal _g_, find a set of items whose total weight is at most _W_ and whose total value is at least _g_.
+
+> There is no polynomial time algorithm for this problem. The dynamic programming scheme for the Knapsack problem runs in __O(nW)__.
+
+> __Subset Sum Problem.__ Provided that an item's value is equal to its weight, and the goal _g_ is the same as the weight capacity _W_, find a subset of a given set of integers that adds up to exactly _W_.
+
+> The subset sum problem is a variant of the knapsack problem, except that the value of the item is directly porportional to its weight.
+
+#### What is the class of NP problems? What is the class of P problems? What is the relation between these two classes of problems? For instance, is P = NP?
+
+> We denote the class of all search problems by __NP__.
+
+> We denote the class of all search problems that can be solved in polynomial time by __P__.
+
+> The P versus NP problem is to determine whether every language accepted by some nondeterministic algorithm in polynomial time is also accepted by some (deterministic) algorithm in polynomial time.
+
+#### What does it mean that you can reduce a search problem A to a search problem B? What do you need to do in order to provide such a reduction? (you can provide a drawing to explain your answer)
+
+> A reduction from search problem A to search problem B is a polynomial-time algorithm _f_ that transforms any instance _I_ of _A_ into an instance f(I) of _B_, together with another polynomial-time algorithm _h_ that maps any solution _S_ of f(I) back into a solution h(S) of _I_
+
+> If we denote a reduction from A to B by __A &rarr; B__, then we can say that difficulty flows in the direction of the arrow, while efficient algorithms move in the opposite direction.
+
+#### What is the class of NP-complete problems? What is the class of NP-hard problems?
+
+> A search problem is __NP-complete__ if all other search problems reduce to it.
+
+> __NP-hard__ is a class of problems that are, informally, "at least as hard as the hardest problems in NP"
 
 #### When is a problem in the class of co-NP problems? Provide an example of a co-NP problem.
 
