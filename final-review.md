@@ -274,48 +274,6 @@ MST-PRIM(G, w, r)
 
 #### What is the vertex cover problem? What is the clique problem? Are there polynomial time algorithms for these problems?
 
-> A __vertex cover__ of an undirected graph `g = (V,E)` is a subset _V &sube; V_ such that if _(u,v) &isin; E_, then _u &isin; V'_ and/or _v &isin; V'_. A vertex cover for _G_ is a set of vertices that covers all the edges in _E_.
-
-> The __vertex-cover problem__ is to find a vertex cover of minimum size in a given graph. Restating this optimization problem as a decision problem, we wish to determine whether a graph has a vertex cover of a given size _k_.
-
-> The vertex-cover problem is a NP complete problem. A polynomial-time __approximation algorithm__ can obtain near-optimal solutions to the vertex-cover problem.
-
-> A __clique__ of an undirected graph `G = (V,E)` is a subset _V' &sube; V_ of vertices, each pair of which is connected by an edge in _E_. In other words, a clique is a complete subgraph of _G_.
-
-> The __clique problem__ is the optimization problem of finding a clique of maximum size in a graph. As a decision problem, we ask simply whether a clique of a given size _k_ exists in the graph.
-
-> There isn't a polynomial-time algorithm for clique, because it is NP-hard.
-
-## Additional examples of NP complete problems - Reductions
-
-#### What is the minimum cut problem? Is there a polynomial time algorithm for this problem?
-
-> A __cut__ is a set of edges whose removal leaves a graph disconnected. It is often of interest to find small cuts.
-
-> The __minimum cut problem__ is, given a graph and a budget _b_, to find a cut with at most _b_ edges.
-
-> This problem can be solved in polynomial time by __n - 1 max-flow computations__.
-
-> * Give each edge a capacity of 1, and find the maximum flow between some fixed node and every single other node.
-> * The smallest such flow will correspond (via the max-flow min-cut theorem) to the smallest cut.
-
-#### Consider the following approach for computing a minimum cut: run Kruskal’s algorithm on an unweighted graph and remove the last edge of the resulting minimum spanning tree to define a cut (randomize the selection of the edges among multiple equivalent choices). Show that the probability of this cut being the minimum cut is at least 1/n<sup>2</sup>. What is the running time n of the randomized approach that computes the minimum cut with high probability through Kruskal’s algorithm?
-
-> Proof of 1/n<sup>2</sup> probability:
-
-> * The number of edges incident to each component must be at least _C_, the size of the minimum cut in _G_.
-> * So if there are _k_ components in the graph, the number of eligible edges is at least _kC/2_
->   - each of the _k_ components has at least C edges leading out of it, and we need to compensate for the double-counting of each edge.
-> * Since the edges were randomly ordered, the chance that the next eligible edge in the list is from the minimum cut is at most C/(kC/2) = 2/k.
-> * Thus, with probability at least 1 - 2/k = (k - 2)/k, the choice leaves the minimum cut intact.
-> * But now the chance that Kruskal's algorithm leaves the minimum cut intact all the way up to the choice of the last spanning tree edge is at least:
-
-```java
-n-2   n-3   n-4          2     1      1
---- * --- * --- * ... * --- * --- = ------
- n    n-1   n-2          4     2    n(n-1)
-```
-
 
 ## Examples of reductions between NP complete problems
 
