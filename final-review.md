@@ -243,53 +243,34 @@ MST-PRIM(G, w, r)
 
 > * Suppose that we somehow knew the _cost_ of the optimum tour; then we could find this tour by calling the algorithm for the search problem, using the optimum cost as the budget. We then find the optimum cost by __binary search!__
 
+#### What is an Eulerian tour? When does a graph have an Eulerian tour?
 
+> A __Euler tour__ of a connected, directed graph `G = (V,E)` is a cycle that traverses each _edge_ of _G_ exactly once, although it is allowed to visit each vertex more than once.
 
-#### What is the vertex cover problem? What is the clique problem? Are there polynomial time algorithms for these problems?
+> __Condition.__ If and only if (a) the graph is connected and (b) every vertex, with the possible exception of two vertices (the start and final vertices of the walk), has even degree.
 
-> A __vertex cover__ of an undirected graph `g = (V,E)` is a subset _V &sube; V_ such that if _(u,v) &isin; E_, then _u &isin; V'_ and/or _v &isin; V'_. A vertex cover for _G_ is a set of vertices that covers all the edges in _E_.
+#### What is the Rudrata cycle/path problem? Is there a polynomial time algorithm for this problem?
 
-> The __vertex-cover problem__ is to find a vertex cover of minimum size in a given graph. Restating this optimization problem as a decision problem, we wish to determine whether a graph has a vertex cover of a given size _k_.
+> __Rudrata Cycle.__ Given a graph, find a _cycle_ that visits each vertex exactly once&#8212;or report that no such cycle exists.
 
-> The vertex-cover problem is a NP complete problem. A polynomial-time __approximation algorithm__ can obtain near-optimal solutions to the vertex-cover problem.
+> __Rudrata Path.__ Is just like the Rudrata Cycle, except the goal is now to find a _path_ rather than a _cycle_.
 
-> A __clique__ of an undirected graph `G = (V,E)` is a subset _V' &sube; V_ of vertices, each pair of which is connected by an edge in _E_. In other words, a clique is a complete subgraph of _G_.
+> There are no polynomial time algorithm for this problem. The Rudrata cycle is very similar to the _TSP_.
 
-> The __clique problem__ is the optimization problem of finding a clique of maximum size in a graph. As a decision problem, we ask simply whether a clique of a given size _k_ exists in the graph.
+#### What is the independent set problem? Describe a dynamic programming solution for computing an independent set on trees. What is the running time of this solution? Is there a polynomial time algorithm for this problem on general graphs?
 
-> There isn't a polynomial-time algorithm for clique, because it is NP-hard.
+> A subset of nodes _S &sub; V_ is an independent set of graph `G = (V,E)` if there are no edges between them.
 
-## Additional examples of NP complete problems - Reductions
+> The __independent-set problem__ is to find a maximum-size independent set in _G_.
 
-#### What is the minimum cut problem? Is there a polynomial time algorithm for this problem?
+> When the graph happens to be a tree, the problem can be solved in linear time, __O(|V| + |E|)__ using dynamic programming.
 
-> A __cut__ is a set of edges whose removal leaves a graph disconnected. It is often of interest to find small cuts.
+> __Dynamic Programming__
 
-> The __minimum cut problem__ is, given a graph and a budget _b_, to find a cut with at most _b_ edges.
+> * Start by rooting the tree at any node _r_. Now, each node defines a subtree&#8212;the one hanging from it.
+> * _I(u)_ = size of largest independent set of subtree hanging from _u_.
+> * Final goal is _I(r)_.
 
-> This problem can be solved in polynomial time by __n - 1 max-flow computations__.
-
-> * Give each edge a capacity of 1, and find the maximum flow between some fixed node and every single other node.
-> * The smallest such flow will correspond (via the max-flow min-cut theorem) to the smallest cut.
-
-#### Consider the following approach for computing a minimum cut: run Kruskal’s algorithm on an unweighted graph and remove the last edge of the resulting minimum spanning tree to define a cut (randomize the selection of the edges among multiple equivalent choices). Show that the probability of this cut being the minimum cut is at least 1/n<sup>2</sup>. What is the running time n of the randomized approach that computes the minimum cut with high probability through Kruskal’s algorithm?
-
-> Proof of 1/n<sup>2</sup> probability:
-
-> * The number of edges incident to each component must be at least _C_, the size of the minimum cut in _G_.
-> * So if there are _k_ components in the graph, the number of eligible edges is at least _kC/2_
->   - each of the _k_ components has at least C edges leading out of it, and we need to compensate for the double-counting of each edge.
-> * Since the edges were randomly ordered, the chance that the next eligible edge in the list is from the minimum cut is at most C/(kC/2) = 2/k.
-> * Thus, with probability at least 1 - 2/k = (k - 2)/k, the choice leaves the minimum cut intact.
-> * But now the chance that Kruskal's algorithm leaves the minimum cut intact all the way up to the choice of the last spanning tree edge is at least:
-
-```java
-n-2   n-3   n-4          2     1      1
---- * --- * --- * ... * --- * --- = ------
- n    n-1   n-2          4     2    n(n-1)
-```
-
-> The final runtime is __O(n<sup>2</sup> log n)__.
 
 #### What is the balanced cut problem? Is there a polynomial time algorithm for this problem?
 
