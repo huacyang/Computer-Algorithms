@@ -259,7 +259,32 @@ MST-PRIM(G, w, r)
 
 #### What is the independent set problem? Describe a dynamic programming solution for computing an independent set on trees. What is the running time of this solution? Is there a polynomial time algorithm for this problem on general graphs?
 
+> A subset of nodes _S &sub; V_ is an independent set of graph `G = (V,E)` if there are no edges between them.
+
+> The __independent-set problem__ is to find a maximum-size independent set in _G_.
+
+> When the graph happens to be a tree, the problem can be solved in linear time, __O(|V| + |E|)__ using dynamic programming.
+
+> __Dynamic Programming__
+
+> * Start by rooting the tree at any node _r_. Now, each node defines a subtree&#8212;the one hanging from it.
+> * _I(u)_ = size of largest independent set of subtree hanging from _u_.
+> * Final goal is _I(r)_.
+
+
 #### What is the vertex cover problem? What is the clique problem? Are there polynomial time algorithms for these problems?
+
+> A __vertex cover__ of an undirected graph `g = (V,E)` is a subset _V &sube; V_ such that if _(u,v) &isin; E_, then _u &isin; V'_ and/or _v &isin; V'_. A vertex cover for _G_ is a set of verticies that covers all the edges in _E_.
+
+> The __vertex-cover problem__ is to find a vertex cover of minimum size in a given graph. Restating this optimization problem as a decision problem, we wish to determine whether a graph has a vertex cover of a given size _k_.
+
+> A polynomial-time __approximation algorithm__ can obtain near-optimal solutions to the vertex-cover problem.
+
+> A __clique__ is an undirected graph `G = (V,E)` is a subset _V' &sube; V_ of vertices, each pair of which is connected by an edge in _E_. In other words, a clique is a complete subgraph of _G_.
+
+> The __clique problem__ is the optimization problem of finding a clique of maximum size in a graph. As a decision problem, we ask simply whether a clique of a given size _k_ exists in the graph.
+
+> There isn't a polynomial-time algorithm for clique, because it is NP-hard.
 
 ## Additional examples of NP complete problems - Reductions
 
