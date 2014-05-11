@@ -178,3 +178,185 @@ MST-PRIM(G, w, r)
 10       v.pie = u
 11       v.key = w(u,v)
 ```
+
+#### What is the running time of Prim’s algorithm given an array implementation of a priority queue? What is the running time of the algorithm given a binary heap implementation of a priority queue?
+
+> __Binary Heap.__
+
+> * We can use the BUILD-MIN-HEAP procedure to perform lines 1-5 in __O(V)__ times.
+> * The body of the while loop executes _|V|_ times, and since each EXTRACT-MIN operations takes _O(log V)_ time, the total time for all calls to EXTRACT-MIN is __O(V log V)__.
+> * The for loop in lines 8-11 executes __O(E)__ times altogether, since the sum of the lengths of all adjacency lists is _2|E|_.
+> * Within the for loop, we can implement the test for membership in Q in line 9 in constant time by keeping a bit for each vertex that tells whether or not it is in Q, and updating the bit when the vertex is removed from Q.
+> * The assignment in line 11 involves an implicit DECREASE-KEY operation on the min-heap, which a binary min-heap supports in __O(log V)__ time.
+> * The total time for Prim's algorithm is _O(V log V + E log V)_ = __O(E log V)__.
+
+## The class of NP problems - Examples of NP complete problems
+
+#### What is the satisfiability problem? What is the worst-case running time of the best known algorithm for this problem? What is the running time of checking whether a candidate solution is truly solving the problem or not?
+
+> The satisfiability problem is a __Boolean formula in Conjunctive Normal Form__ (_CNF_). It is a collection of _clauses_ (the parentheses), each consisting of the disjunction (logical _or_, denoted as &or;) of several literals.
+
+> __The SAT Problem.__ Given a Boolean formula in _CNF_, either find a satisfying truth assignment or else report that none exists.
+
+> * A __literal__ is either a Boolean variable (such as _x_) or the negation of one (such as _&not;x_).
+> * A __satisfying truth assignment__ is an assignment of _false_ or _true_ to each variable so that every clause contains a literal whose value is _true_.
+
+> The worst-case running time is __exponential__.
+
+> The running time of checking whether a candidate solution is truly solving the problem or not is __polynomial__.
+
+#### Are there versions of the general satisfiability problem that can be solved in polynomial time? Describe two of them.
+
+> __Horn formula.__ If all clauses contain at most one positive literal, and can be satisfied by the Greedy algorithm.
+
+> __2SAT__ contains two literals, and can be solved by finding the strongly connected components of a particular graph.
+
+#### What is the traveling salesman problem? What is a dynamic programming approach for the traveling salesman approach? What is the running time of this approach?
+
+> The __Traveling Salesman Problem__ is a _search problem_: find a _tour_, a cycle that passes through every vertex exactly once, within the given budget&#8212;or to report that no such tour exists.
+
+> __Dynamic programming approach.__
+
+> * __Subproblem__:
+>   - For a subset of cities _S &sube; {1,2,...,n}_ that includes _1_, and _j &isin; S_, let _C(S,j)_ be the length of the shortest path visiting each node in _S_ exactly once, starting at _1_ and ending at _j_.
+> * __Code__
+
+```java
+1  C({1},1) = 0
+2  for s = 2 to n:
+3    for all subsets S subset of {1,2,...,n} of size s and containing 1:
+4      C(S,1) = infinity
+5      for all j element of S, j != 1
+6        C(S,j) = min{C(S - {j},i) + d of ij : i element of S, i != j}
+7  return min of j C({1,...,n},j) + d of j1
+```
+
+> * There are at most 2<sup>n</sup> &times; n subproblems, and each one takes linear time to solve. The total running time is therefore __O(n<sup>2</sup>2<sup>n</sup>)__.
+
+#### Show that any optimization problem can be reduced to a search problem. Show that any search problem can be reduced to an optimization problem. Why do we typically prefer to work with search problems when studying the computational complexity of algorithms?
+
+> __Optimization Problem__ &rarr; __Search Problem__
+
+> * Any algorithm that solves the optimization _TSP_ also readily solves the search problem: find the optimum tour and if it is within budget, return it; if not, there is no solution.
+
+> __Search Problem__ &rarr; __Optimization Problem__
+
+> * Suppose that we somehow knew the _cost_ of the optimum tour; then we could find this tour by calling the algorithm for the search problem, using the optimum cost as the budget. We then find the optimum cost by __binary search!__
+
+#### What is an Eulerian tour? When does a graph have an Eulerian tour?
+
+> A __Euler tour__ of a connected, directed graph `G = (V,E)` is a cycle that traverses each _edge_ of _G_ exactly once, although it is allowed to visit each vertex more than once.
+
+> __Condition.__ If and only if (a) the graph is connected and (b) every vertex, with the possible exception of two vertices (the start and final vertices of the walk), has even degree.
+
+#### What is the Rudrata cycle/path problem? Is there a polynomial time algorithm for this problem?
+
+> __Rudrata Cycle.__ Given a graph, find a _cycle_ that visits each vertex exactly once&#8212;or report that no such cycle exists.
+
+> __Rudrata Path.__ Is just like the Rudrata Cycle, except the goal is now to find a _path_ rather than a _cycle_.
+
+> There are no polynomial time algorithm for this problem. The Rudrata cycle is very similar to the _TSP_.
+
+#### What is the independent set problem? Describe a dynamic programming solution for computing an independent set on trees. What is the running time of this solution? Is there a polynomial time algorithm for this problem on general graphs?
+
+> A subset of nodes _S &sub; V_ is an independent set of graph `G = (V,E)` if there are no edges between them.
+
+> The __independent-set problem__ is to find a maximum-size independent set in _G_.
+
+> When the graph happens to be a tree, the problem can be solved in linear time, __O(|V| + |E|)__ using dynamic programming.
+
+> __Dynamic Programming__
+
+> * Start by rooting the tree at any node _r_. Now, each node defines a subtree&#8212;the one hanging from it.
+> * _I(u)_ = size of largest independent set of subtree hanging from _u_.
+> * Final goal is _I(r)_.
+
+
+#### What is the vertex cover problem? What is the clique problem? Are there polynomial time algorithms for these problems?
+
+> A __vertex cover__ of an undirected graph `g = (V,E)` is a subset _V &sube; V_ such that if _(u,v) &isin; E_, then _u &isin; V'_ and/or _v &isin; V'_. A vertex cover for _G_ is a set of vertices that covers all the edges in _E_.
+
+> The __vertex-cover problem__ is to find a vertex cover of minimum size in a given graph. Restating this optimization problem as a decision problem, we wish to determine whether a graph has a vertex cover of a given size _k_.
+
+> The vertex-cover problem is a NP complete problem. A polynomial-time __approximation algorithm__ can obtain near-optimal solutions to the vertex-cover problem.
+
+> A __clique__ of an undirected graph `G = (V,E)` is a subset _V' &sube; V_ of vertices, each pair of which is connected by an edge in _E_. In other words, a clique is a complete subgraph of _G_.
+
+> The __clique problem__ is the optimization problem of finding a clique of maximum size in a graph. As a decision problem, we ask simply whether a clique of a given size _k_ exists in the graph.
+
+> There isn't a polynomial-time algorithm for clique, because it is NP-hard.
+
+## Additional examples of NP complete problems - Reductions
+
+#### What is the minimum cut problem? Is there a polynomial time algorithm for this problem?
+
+> A __cut__ is a set of edges whose removal leaves a graph disconnected. It is often of interest to find small cuts.
+
+> The __minimum cut problem__ is, given a graph and a budget _b_, to find a cut with at most _b_ edges.
+
+> This problem can be solved in polynomial time by __n - 1 max-flow computations__.
+
+> * Give each edge a capacity of 1, and find the maximum flow between some fixed node and every single other node.
+> * The smallest such flow will correspond (via the max-flow min-cut theorem) to the smallest cut.
+
+#### Consider the following approach for computing a minimum cut: run Kruskal’s algorithm on an unweighted graph and remove the last edge of the resulting minimum spanning tree to define a cut (randomize the selection of the edges among multiple equivalent choices). Show that the probability of this cut being the minimum cut is at least 1/n<sup>2</sup>. What is the running time n of the randomized approach that computes the minimum cut with high probability through Kruskal’s algorithm?
+
+> Proof of 1/n<sup>2</sup> probability:
+
+> * The number of edges incident to each component must be at least _C_, the size of the minimum cut in _G_.
+> * So if there are _k_ components in the graph, the number of eligible edges is at least _kC/2_
+>   - each of the _k_ components has at least C edges leading out of it, and we need to compensate for the double-counting of each edge.
+> * Since the edges were randomly ordered, the chance that the next eligible edge in the list is from the minimum cut is at most C/(kC/2) = 2/k.
+> * Thus, with probability at least 1 - 2/k = (k - 2)/k, the choice leaves the minimum cut intact.
+> * But now the chance that Kruskal's algorithm leaves the minimum cut intact all the way up to the choice of the last spanning tree edge is at least:
+
+```java
+n-2   n-3   n-4          2     1      1
+--- * --- * --- * ... * --- * --- = ------
+ n    n-1   n-2          4     2    n(n-1)
+```
+
+
+## Examples of reductions between NP complete problems
+
+#### Show that the general satisfiability (SAT) problem reduces to the 3-SAT problem.
+
+#### Show that the 3-SAT problem reduces to the Independent Set problem.
+
+#### Show that the Independent Set problem reduces to the Vertex cover problem.
+
+#### Show that the Independent Set problem reduces to the Clique problem.
+
+#### Show that the Circuit SAT problem reduces to the SAT problem. What is the importance of this reduction?
+
+## Intelligent Exhaustive Search, Intro to Approximation Algorithms
+
+#### What is the idea behind backtracking search in order to solve NP-complete problems?
+
+#### Describe a general framework for backtracking search.
+
+#### Describe the application of backtracking search to the satisfiability problem, i.e., which sub- problems are expanded at each iteration and which branching variable is considered?
+
+#### Describe the general branch-and-bound approach for optimization problems.
+
+#### Describe an application of branch-and-bound to the traveling salesman problem.
+
+#### How is the approximation ratio of an approximation algorithm computed?
+
+#### Provide an approximation algorithm for the vertex cover problem. What approximation ratio does it achieve?
+
+## Approximation Algorithms, Local Search Heuristics
+
+#### When does a distance function satisfy metric properties?
+
+#### What is the k-clustering NP-complete problem? Provide a simple approximation scheme for the k-clustering problem. What is the approximation ratio that it achieves. Prove it.
+
+#### Provide an approximation algorithm for the traveling salesman problem given that the underlying graph has edge weights that satisfy metric properties. What is the approximation ratio for this algorithm? Prove it.
+
+#### Describe the general local search framework.
+
+#### Provide a local search approach for the traveling salesman problem.
+
+#### Provide a local search strategy for the graph partitioning problem.
+
+#### How can you deal with local optimal in the context of local search?
