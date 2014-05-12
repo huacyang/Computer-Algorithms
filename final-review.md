@@ -187,7 +187,7 @@ MST-PRIM(G, w, r)
 > * The assignment in line 11 involves an implicit DECREASE-KEY operation on the min-heap, which a binary min-heap supports in __O(log V)__ time.
 > * The total time for Prim's algorithm is _O(V log V + E log V)_ = __O(E log V)__.
 
-## The class of NP problems - Examples of NP complete problems
+## The class of NP problems
 
 #### What is the satisfiability problem? What is the worst-case running time of the best known algorithm for this problem? What is the running time of checking whether a candidate solution is truly solving the problem or not?
 
@@ -282,7 +282,7 @@ MST-PRIM(G, w, r)
 
 > There isn't a polynomial-time algorithm for clique, because it is NP-hard.
 
-## Additional examples of NP complete problems - Reductions
+## The Reduction of NP complete problems
 
 #### What is the minimum cut problem? Is there a polynomial time algorithm for this problem?
 
@@ -362,7 +362,7 @@ MST-PRIM(G, w, r)
 > * If _L_ &isin; P, then _L_ &isin; NP, since if there is a polynomial-time algorithm to decide _L_, the algorithm can be easily converted to a two-argument verification algorithm that simply ignores any certificate and accepts exactly those input strings it determines to be in _L_.
 > * Thus, P &sube; NP
 
-## Examples of reductions between NP complete problems
+## Reductions between NP complete problems
 
 #### Show that the general satisfiability (SAT) problem reduces to the 3-SAT problem.
 
@@ -419,7 +419,7 @@ MST-PRIM(G, w, r)
 > * If _g_ is the output gate, we force it to be __true__ by adding the clause (g).
 > * The resulting instance of SAT is equivalent to the given instance of Circuit SAT: the satisfying truth assignments of this conjunctive normal form are in one-to-one correspondence with those of the circuit.
 
-## Intelligent Exhaustive Search, Intro to Approximation Algorithms
+## Intelligent Exhaustive Search, Approximation Algorithms
 
 #### What is the idea behind backtracking search in order to solve NP-complete problems?
 
@@ -513,14 +513,74 @@ Return S = {all endpoints of edges in M}
 
 #### When does a distance function satisfy metric properties?
 
+> __Metric Properties.__
+
+> 1. _d(x,y)_ &ge; 0 for all _x,y_
+> 2. _d(x,y)_ = 0 if and only if _x = y_
+> 3. _d(x,y)_ = _d(y,x)_
+> 4. _d(x,y)_ &le; d(x,z) + d(z,y)
+
 #### What is the k-clustering NP-complete problem? Provide a simple approximation scheme for the k-clustering problem. What is the approximation ratio that it achieves. Prove it.
+
+> __K-clustering NP-complete problem.__
+
+> * Pick _k_ of the data points as cluster centers.
+> * Assign each of the remaining points to the center closest to it, thus creating _k_ clusters.
+> * The centers are picked one at a time
+>   - Always pick the next center to be as far as possible from the centers chosen so far.
+
+```java
+1  Pick any point u1 element of X as the first cluster center
+2  for i = 2 to k:
+3    Let ui be the point in X that is farthest from u1,...,ui-1
+4  Create k clusters: Ci = {all x element of X whose closest center is ui}
+```
+
+> __Approximation Scheme__
+
+> * Similar to the scheme for __Vertex Cover__.
+> * Computable Structure:
+>   - A set of _k_ points that cover all of _X_ within some radius _r_
+>   - While at the same time being mutually separated by a distance of at least _r_
+> * This structure is used both to generate a clustering and to give a lower bound on the optimal clustering
 
 #### Provide an approximation algorithm for the traveling salesman problem given that the underlying graph has edge weights that satisfy metric properties. What is the approximation ratio for this algorithm? Prove it.
 
 #### Describe the general local search framework.
 
+```java
+1  let s be any initial solution
+2  while there is some solution s` in the neighborhood of s
+3    for which cost(s`) < cost(s): replace s by s`
+4  return s
+```
+
+> * On each iteration, the current solution is replaced by a better one close to it, in its __neighborhood__.
+> * This neighborhood structure is something we impose upon the problem and is the central design decision in local search.
+
 #### Provide a local search approach for the traveling salesman problem.
+
+> * Assume we have all interpoint distances between _n_ cities, giving a search space of `(n - 1)!` different tours.
+> * The notion is to consider two tours as being close if they differ in just a few edges.
+> * We define the _k_-change neighborhood of tour _s_ as being the set of tours that can be obtained by removing _k_ edges of _s_ and then putting in _k_ other edges.
+> * The tour has __O(n<sup>k</sup>)__ neighbors.
+> * The final tour is __locally optimal__&#8212;it is superior to the tours in its immediate neighborhood.
 
 #### Provide a local search strategy for the graph partitioning problem.
 
-#### How can you deal with local optimal in the context of local search?
+> * __Local search algorithm.__ Focus on the special case _&alpha; = 1/2_, in which _A_ and _B_ are forced to contain exactly half the vertices.
+> * Let _(A,B)_, with |A| = |B|, be a candidate solution.
+> * We will define its neighbors to be all solutions obtainable by swapping one pair of vertices across the cut.
+> * All solutions of the form __(A-{a}+{b}, B-{b}+a)__ where _a &isin; A_ and _b &isin; B_.
+
+#### How can you deal with local optima in the context of local search?
+
+> __Randomization.__
+
+> * To pick a random initial solution (i.e. a random graph partition).
+> * To choose a local move when several are available.
+
+> Randomization is a way of making sure that there is at least some probability of getting to the right one.
+
+> * The local search can be repeated several times, with a different random seed on each invocation, and the best solution returned.
+> * The probability of reaching a good local optimum on any given run is _p_, then within __O(1/p)__ runs such a solution is likely to be found.
