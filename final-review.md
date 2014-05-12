@@ -423,17 +423,91 @@ MST-PRIM(G, w, r)
 
 #### What is the idea behind backtracking search in order to solve NP-complete problems?
 
+> __Backtracking__ explores the space of assignments, growing the tree only at nodes where there is uncertainty about the outcome, and stopping if at any stage a satisfying assignment is encountered.
+
 #### Describe a general framework for backtracking search.
 
-#### Describe the application of backtracking search to the satisfiability problem, i.e., which sub- problems are expanded at each iteration and which branching variable is considered?
+```java
+1  Start with some problem P0
+2  Let S = {P0}, the set of active subproblems
+3  Repeat while S is nonempty:
+4    _choose a subproblem P element of S and remove it from S
+5    _expand it into smaller subproblems P1,P2,...,Pk
+6    For each Pi:
+7      If _test(Pi) succeeds: halt and announce this solution
+8      If _test(Pi) fails: discard Pi
+9      Otherwise: add Pi to S
+10 Announce that there is no solution
+```
+
+> * The __choose__ procedure picks a clause
+> * The __expand__ picks a variable within that clause
+> * The __test__ looks at a subproblem and quickly declares one of the three outcomes:
+>   - Failure: the subproblem has no solution
+>   - Success: a solution to the subproblem is found
+>   - Uncertainty
+
+#### Describe the application of backtracking search to the satisfiability problem, i.e., which sub-problems are expanded at each iteration and which branching variable is considered?
+
+> The nodes of the search tree, representing partial assignments, are themselves __SAT subproblems__.
+
+> The application of __backtracking__ choose the subproblem that contains the _smallest_ clause and to then branch on a variable in that clause.
 
 #### Describe the general branch-and-bound approach for optimization problems.
 
+> * Define the subproblem: what is the (cost of the) best way to complete the solution?
+> * Set the basis for eliminating partial solutions.
+> * Reject a subproblem if the cost exceeds that of some other solution already encountered.
+> * Use a quick _lower bound_ on the cost.
+
+```java
+1  Start with some problem P0
+2  Let S = {P0}, the set of active subproblems
+3  bestsofar = infinity
+4  Repeat while S is nonempty:
+5    _choose a subproblem P element of S and remove it from S
+6    _expand it into smaller subproblems P1,P2,...,Pk
+7    For each Pi:
+8      If Pi is a complete solution: update bestsofar
+9      else if _lowerbound(Pi) < bestsofar: add Pi to S
+10 return bestsofar
+```
+
 #### Describe an application of branch-and-bound to the traveling salesman problem.
+
+> * At each step of the __branch-and-bound__ algorithm, we extend a particular partial solution `[a,S,b]` by a single edge `(b,x)`, where _x &isin; V - S_.
+> * There can be up to `|V - S|` ways to do this, and each of these branches leads to a subproblem of the form _[a,S&cup;{x},x]_.
+> * Set the lower-bound of the cost to the sum of the following:
+>   - The lightest edge from _a_ to `V - S`
+>   - The lightest edge from _b_ to `V - S`
+>   - The minimum spanning tree of `V - S`
 
 #### How is the approximation ratio of an approximation algorithm computed?
 
+> A problem has an __approximation ratio__ of _p(n)_ if, for any input of size _n_, the cost _C_ of the solution produced by the algorithm is within a factor of _p(n)_ of the cost _C*_ of an optimal solution:
+
+> ![Approximation Algorithm's approximation ratio](img/approximation-ratio.png)
+
+> For a __maximization problem__, _O &lt; C &le; C*_, and the ratio _C* / C_ gives the factor by which the cost of an optimal solution is larger than the cost of the approximate solution.
+
+> For a __minimization problem__, _O &lt; C* &le; C_, and the ratio _C / C*_ gives the factor by which the cost of the approximate solution is larger than the cost of an optimal solution.
+
 #### Provide an approximation algorithm for the vertex cover problem. What approximation ratio does it achieve?
+
+> The better approximation algorithm for vertex cover is based on the notion of a __matchin__, a subset of edges that have no vertices in common.
+
+> A matching is __maximal__ if no more edges can be added to it.
+
+> Maximal matchings will help find good vertex covers, and moreover, they are easy to generate:
+
+> * Repeatedly pick edges that are disjoint from the ones chosen already, until this is no longer possible.
+
+```java
+Find a maximal matching M subset of E
+Return S = {all endpoints of edges in M}
+```
+
+> This simple algorithm has an approximation ratio of __&alpha;A &le; 2__.
 
 ## Approximation Algorithms, Local Search Heuristics
 
